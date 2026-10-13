@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZTRATAX OCEAN — Playtest Kit</title>
+<title>ZTRATAX OCEAN — Playtest</title>
 <style>
   :root {
     --deep: #0a2540;
@@ -16,674 +16,973 @@
     --ink: #1a1a1a;
     --muted: #607d8b;
     --border: #cfd8dc;
+    --card-bg: #1e88e5;
+    --card-back: #0d47a1;
+    --card-hover: #42a5f5;
   }
 
   * { box-sizing: border-box; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     color: var(--ink);
     background: linear-gradient(180deg, #f5f9fc 0%, #e8f1f8 100%);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
   }
 
   header {
     background: linear-gradient(135deg, var(--deep), var(--ocean));
     color: white;
-    padding: 3rem 1.5rem 2rem;
+    padding: 1.5rem 1rem;
     text-align: center;
     box-shadow: 0 4px 20px rgba(10, 37, 64, 0.3);
   }
 
   header h1 {
-    margin: 0 0 0.5rem;
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    letter-spacing: 0.1em;
-    font-weight: 800;
+    margin: 0;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    letter-spacing: 0.08em;
   }
 
   header p {
-    margin: 0;
-    opacity: 0.9;
-    font-size: 1.05rem;
-  }
-
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-  }
-
-  section {
-    background: white;
-    border-radius: 12px;
-    padding: 1.75rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 12px rgba(10, 37, 64, 0.08);
-    border-left: 5px solid var(--wave);
-  }
-
-  section h2 {
-    margin-top: 0;
-    color: var(--deep);
-    font-size: 1.4rem;
-    border-bottom: 2px solid var(--foam);
-    padding-bottom: 0.5rem;
-  }
-
-  section h3 {
-    color: var(--ocean);
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-  }
-
-  ul, ol { padding-left: 1.4rem; }
-
-  li { margin-bottom: 0.4rem; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.95rem;
-  }
-
-  th, td {
-    padding: 0.6rem 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-  }
-
-  th {
-    background: var(--foam);
-    color: var(--deep);
-    font-weight: 700;
-  }
-
-  tr:hover { background: #f9fbfd; }
-
-  .script-box {
-    background: var(--sand);
-    border-left: 4px solid #fbc02d;
-    padding: 1rem 1.25rem;
-    margin: 1rem 0;
-    border-radius: 6px;
-    font-style: italic;
-  }
-
-  .script-box::before {
-    content: "🎙️ ";
-    font-style: normal;
-  }
-
-  .warn {
-    background: #ffebee;
-    border-left: 4px solid #e53935;
-    padding: 1rem 1.25rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-  }
-
-  .warn::before {
-    content: "⚠️ ";
-  }
-
-  .tip {
-    background: #e8f5e9;
-    border-left: 4px solid var(--kelp);
-    padding: 1rem 1.25rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-  }
-
-  .tip::before {
-    content: "💡 ";
-  }
-
-  .checklist {
-    list-style: none;
-    padding: 0;
-  }
-
-  .checklist li {
-    padding: 0.4rem 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .checklist input[type="checkbox"] {
-    margin-top: 0.35rem;
-    width: 18px;
-    height: 18px;
-    accent-color: var(--ocean);
-  }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  @media (max-width: 640px) {
-    .grid-2 { grid-template-columns: 1fr; }
-  }
-
-  .rating {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0.5rem 0 1rem;
-  }
-
-  .rating span {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-weight: 600;
-    color: var(--muted);
-    user-select: none;
-  }
-
-  .rating span:hover {
-    border-color: var(--wave);
-    color: var(--ocean);
-  }
-
-  .rating span.selected {
-    background: var(--ocean);
-    border-color: var(--ocean);
-    color: white;
-  }
-
-  .form-line {
-    display: flex;
-    gap: 0.5rem;
-    align-items: baseline;
-    margin: 0.75rem 0;
-  }
-
-  .form-line label {
-    min-width: 140px;
-    font-weight: 600;
-    color: var(--deep);
-  }
-
-  .form-line input[type="text"],
-  .form-line input[type="number"],
-  .form-line input[type="date"],
-  .form-line textarea {
-    flex: 1;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    width: 100%;
-  }
-
-  .form-line textarea {
-    min-height: 70px;
-    resize: vertical;
-  }
-
-  input[type="text"]:focus,
-  input[type="number"]:focus,
-  textarea:focus {
-    outline: none;
-    border-color: var(--wave);
-    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
-  }
-
-  button {
-    background: var(--ocean);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
-    font-family: inherit;
-  }
-
-  button:hover { background: var(--deep); }
-
-  button.secondary {
-    background: var(--muted);
-  }
-
-  button.secondary:hover { background: var(--deep); }
-
-  .actions {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 2rem 0;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    color: var(--muted);
+    margin: 0.25rem 0 0;
+    opacity: 0.85;
     font-size: 0.9rem;
   }
 
-  footer a { color: var(--ocean); text-decoration: none; }
-
-  .tag {
-    display: inline-block;
-    background: var(--foam);
-    color: var(--ocean);
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-right: 0.3rem;
+  .game-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1rem;
   }
 
-  @media print {
-    body { background: white; }
-    header { box-shadow: none; }
-    section {
-      box-shadow: none;
-      border: 1px solid var(--border);
-      page-break-inside: avoid;
-    }
-    .actions, footer button { display: none; }
-    .script-box, .warn, .tip { border-left-width: 3px; }
+  /* === STATUS BAR === */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .player-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .player-info.active {
+    border-color: var(--wave);
+    background: var(--foam);
+    box-shadow: 0 0 12px rgba(33, 150, 243, 0.25);
+  }
+
+  .player-info.eliminated {
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+
+  .player-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+
+  .player-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .player-coins {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .turn-indicator {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ocean);
+    text-align: center;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  /* === BOARD === */
+  .board-wrapper {
+    position: relative;
+    background: linear-gradient(145deg, #0d47a1, #1565c0, #1976d2);
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 6px 24px rgba(10, 37, 64, 0.3), inset 0 2px 8px rgba(255,255,255,0.15);
+    margin-bottom: 0.75rem;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    aspect-ratio: 1;
+  }
+
+  .cell {
+    position: relative;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    perspective: 600px;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .cell .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    border-radius: 6px;
+  }
+
+  .cell.revealed .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    user-select: none;
+  }
+
+  .card-front {
+    background: linear-gradient(135deg, var(--card-bg), var(--card-back));
+    border: 2px solid rgba(255,255,255,0.2);
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+  }
+
+  .card-front::after {
+    content: "🌊";
+    font-size: clamp(0.8rem, 2vw, 1.3rem);
+    opacity: 0.4;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+    border: 2px solid rgba(0,0,0,0.08);
+  }
+
+  .card-back.fish {
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    color: #00695c;
+  }
+
+  .card-back.trash {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    color: #bf360c;
+  }
+
+  .card-back.coral {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    color: #c62828;
+  }
+
+  .card-back.empty {
+    background: linear-gradient(135deg, #eceff1, #cfd8dc);
+    color: #546e7a;
+  }
+
+  .cell.hole {
+    background: rgba(10, 37, 64, 0.5);
+    border-radius: 6px;
+    cursor: default;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  .cell.hole .card-front,
+  .cell.hole .card-back {
+    opacity: 0;
+  }
+
+  .cell.highlight {
+    box-shadow: 0 0 0 3px #ffeb3b, 0 0 16px rgba(255, 235, 59, 0.5);
+    z-index: 2;
+  }
+
+  .cell.clickable:hover .card-front {
+    background: linear-gradient(135deg, var(--card-hover), #1e88e5);
+    transform: scale(1.05);
+  }
+
+  /* === SHIPS (PLAYER PIECES) === */
+  .ship {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.6rem, 1.8vw, 1rem);
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .ship.p0 { background: #e53935; }
+  .ship.p1 { background: #1e88e5; }
+  .ship.p2 { background: #43a047; }
+  .ship.p3 { background: #fb8c00; }
+
+  .ship.outside {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    font-size: 0.7rem;
+  }
+
+  /* === ACTIONS === */
+  .actions-bar {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .actions-bar button {
+    background: var(--ocean);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    box-shadow: 0 2px 6px rgba(21, 101, 192, 0.3);
+  }
+
+  .actions-bar button:hover:not(:disabled) {
+    background: var(--deep);
+    transform: translateY(-1px);
+  }
+
+  .actions-bar button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .actions-bar button.secondary {
+    background: var(--muted);
+  }
+
+  .actions-bar button.secondary:hover:not(:disabled) {
+    background: var(--deep);
+  }
+
+  /* === LOG === */
+  .log {
+    background: white;
+    border-radius: 10px;
+    padding: 0.75rem;
+    max-height: 140px;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
+    border-left: 4px solid var(--wave);
+    margin-bottom: 0.75rem;
+  }
+
+  .log p {
+    margin: 0.15rem 0;
+    color: var(--muted);
+  }
+
+  .log .highlight {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* === MESSAGE === */
+  .message {
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s;
+  }
+
+  .message.info {
+    background: var(--foam);
+    color: var(--ocean);
+  }
+
+  .message.win {
+    background: #e8f5e9;
+    color: var(--kelp);
+    font-size: 1.15rem;
+  }
+
+  .message.lose {
+    background: #ffebee;
+    color: #c62828;
+  }
+
+  /* === SETUP SCREEN === */
+  .setup-screen {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .setup-screen h2 {
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .setup-screen p {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .setup-options {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .setup-options button {
+    background: white;
+    color: var(--ocean);
+    border: 2px solid var(--wave);
+    padding: 1rem 1.75rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .setup-options button:hover {
+    background: var(--foam);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+  }
+
+  .setup-options button small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .hidden { display: none !important; }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 500px) {
+    .game-container { padding: 0.5rem; }
+    .status-bar { padding: 0.5rem; }
+    .player-name { font-size: 0.75rem; }
+    .board { gap: 3px; }
+    .board-wrapper { padding: 6px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>ZTRATAX OCEAN</h1>
-  <p>Playtest Kit — Laut yang Mengkerut</p>
-  <p style="font-size:0.9rem; margin-top:0.75rem; opacity:0.75;">
-    <span class="tag">2 Pemain</span>
-    <span class="tag">8×8 Kartu</span>
-    <span class="tag">20–30 Menit</span>
-  </p>
+  <h1>🌊 ZTRATAX OCEAN</h1>
+  <p>Playtest Interaktif — Laut yang Mengkerut</p>
 </header>
 
-<main>
+<div class="game-container">
 
-  <!-- ======================== SECTION 0 ======================== -->
-  <section id="checklist">
-    <h2>📋 Bagian 0 — Checklist Sebelum Sesi</h2>
-
-    <h3>Komponen yang Harus Disiapkan</h3>
-    <ul class="checklist">
-      <li><input type="checkbox"> 64 kartu tertutup dalam susunan 8×8 (kartu remi atau kertas lipat)</li>
-      <li><input type="checkbox"> 2 bidak kapal (koin, kancing, atau pion)</li>
-      <li><input type="checkbox"> 20 token koin (atau potongan kertas)</li>
-      <li><input type="checkbox"> 12 kartu Konservasi (opsional)</li>
-      <li><input type="checkbox"> Lembar observasi fasilitator</li>
-      <li><input type="checkbox"> Lembar feedback pemain</li>
-      <li><input type="checkbox"> Pena dan catatan</li>
-      <li><input type="checkbox"> Timer atau jam</li>
-    </ul>
-
-    <h3>Komposisi 64 Kartu (8×8)</h3>
-    <table>
-      <thead>
-        <tr><th>Kartu</th><th>Jumlah</th><th>Efek</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>🐟 Ikan</td><td>24</td><td>+2 koin</td></tr>
-        <tr><td>🗑️ Sampah</td><td>20</td><td>−1 koin</td></tr>
-        <tr><td>🪸 Karang</td><td>12</td><td>−2 koin, +1 poin konservasi</td></tr>
-        <tr><td>🌊 Kosong</td><td>8</td><td>0 koin</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Atur Meja</h3>
-    <ul>
-      <li>Papan di tengah meja</li>
-      <li>Koin di sisi kiri fasilitator</li>
-      <li>Bidak di sisi kanan</li>
-      <li>Catatan dan pena di dekat fasilitator</li>
-    </ul>
-  </section>
-
-  <!-- ======================== SECTION 1 ======================== -->
-  <section id="pembukaan">
-    <h2>🎬 Bagian 1 — Skrip Pembukaan (2 menit)</h2>
-
-    <div class="script-box">
-      Hari ini kita akan menguji permainan bernama <strong>ZTRATAX OCEAN</strong>. Ini adalah permainan tentang eksplorasi laut yang menyusut. Setiap kartu yang kalian buka akan hilang selamanya. Tujuan kalian: kumpulkan koin sebanyak mungkin <strong>dan</strong> tetap bertahan hidup. Kalau kalian terjebak atau bangkrut, kalian kalah.
+  <!-- SETUP SCREEN -->
+  <div id="setupScreen" class="setup-screen">
+    <h2>Pilih Jumlah Pemain</h2>
+    <p>Setiap pemain mulai dari sisi yang berbeda. Kumpulkan koin sebanyak mungkin sebelum laut habis.</p>
+    <div class="setup-options">
+      <button onclick="startGame(2)">
+        2 Pemain
+        <small>Utara vs Selatan</small>
+      </button>
+      <button onclick="startGame(3)">
+        3 Pemain
+        <small>Utara, Selatan, Barat</small>
+      </button>
+      <button onclick="startGame(4)">
+        4 Pemain
+        <small>Semua sisi</small>
+      </button>
     </div>
-
-    <div class="script-box">
-      Saya akan menjelaskan aturannya, lalu kita langsung main. Setelah selesai, saya akan minta pendapat kalian. Tidak ada jawaban benar atau salah — saya butuh kejujuran kalian.
-    </div>
-  </section>
-
-  <!-- ======================== SECTION 2 ======================== -->
-  <section id="aturan">
-    <h2>📖 Bagian 2 — Skrip Aturan (5 menit)</h2>
-
-    <div class="script-box">
-      Ini papan 8×8. Semua kartu tertutup. Anggap saja ini laut. Kalian berdua mulai <strong>di luar papan</strong> — kamu di sisi utara, kamu di sisi selatan.
-    </div>
-
-    <p>Setiap giliran, kalian memilih <strong>satu</strong> dari dua aksi:</p>
-
-    <h3>Aksi A — Bergerak</h3>
-    <div class="script-box">
-      Pindahkan kapal kalian <strong>satu petak</strong> ke kartu tertutup yang kosong. Boleh horizontal atau vertikal. Tidak boleh diagonal. Tidak boleh masuk ke petak yang sudah dibuka. Tidak boleh berbagi petak dengan pemain lain.
-    </div>
-
-    <h3>Aksi B — Membuka Kartu</h3>
-    <div class="script-box">
-      Jika kalian berada di kartu tertutup <strong>atau</strong> di luar papan, buka satu kartu tertutup yang <strong>bersebelahan</strong> dengan posisi kalian. Terapkan efeknya, lalu <strong>buang kartu itu</strong>. Petak itu menjadi lubang dan tidak bisa dilewati lagi.
-    </div>
-
-    <div class="warn">
-      Penting: kalian <strong>tidak pernah berdiri di atas kartu yang kalian buka</strong>. Kalian membuka dari kejauhan.
-    </div>
-
-    <h3>Efek Kartu</h3>
-    <table>
-      <thead><tr><th>Kartu</th><th>Efek</th></tr></thead>
-      <tbody>
-        <tr><td>🐟 Ikan</td><td>Ambil 2 koin.</td></tr>
-        <tr><td>🗑️ Sampah</td><td>Bayar 1 koin.</td></tr>
-        <tr><td>🪸 Karang</td><td>Bayar 2 koin, dapat 1 poin konservasi (1 poin = 1 koin di akhir).</td></tr>
-        <tr><td>🌊 Kosong</td><td>Tidak ada efek.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Kondisi Kalah</h3>
-    <ul>
-      <li>Tidak bisa bergerak sama sekali di awal giliran.</li>
-      <li>Koin mencapai −5.</li>
-      <li>Terhalang pemain lain dan tidak ada jalan lain.</li>
-    </ul>
-
-    <h3>Kondisi Akhir</h3>
-    <ul>
-      <li>Semua kartu habis, <strong>atau</strong></li>
-      <li>Hanya satu pemain tersisa.</li>
-    </ul>
-
-    <p><strong>Pemenang:</strong> pemain dengan koin terbanyak di antara yang masih bertahan.</p>
-
-    <div class="script-box">
-      Ada pertanyaan sebelum kita mulai?
-    </div>
-  </section>
-
-  <!-- ======================== SECTION 3 ======================== -->
-  <section id="selama">
-    <h2>🎮 Bagian 3 — Skrip Selama Permainan</h2>
-
-    <h3>Frasa yang Boleh Diucapkan</h3>
-    <table>
-      <thead><tr><th>Situasi</th><th>Frasa</th></tr></thead>
-      <tbody>
-        <tr><td>Pemain ragu</td><td>"Terserah kamu. Tidak ada jawaban benar."</td></tr>
-        <tr><td>Pemain bertanya aturan</td><td>"Menurutmu bagaimana seharusnya?" lalu putuskan cepat.</td></tr>
-        <tr><td>Pemain kesal</td><td>"Itu wajar. Lanjutkan dulu, nanti kita bahas."</td></tr>
-        <tr><td>Pemain ingin mengubah aturan</td><td>"Catat dulu. Setelah selesai kita coba."</td></tr>
-        <tr><td>Pemain diam</td><td>"Giliranmu."</td></tr>
-        <tr><td>Pemain membuka karang</td><td>"Kamu dapat 1 poin konservasi."</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Frasa yang TIDAK Boleh Diucapkan</h3>
-    <div class="warn">
-      <ul style="margin:0;">
-        <li>"Sebaiknya kamu buka yang itu."</li>
-        <li>"Itu langkah buruk."</li>
-        <li>"Kamu pasti kalah."</li>
-        <li>"Menurut saya aturannya kurang jelas."</li>
-        <li>"Kalau saya jadi kamu..."</li>
-      </ul>
-    </div>
-
-    <h3>Yang Harus Dicatat Fasilitator</h3>
-    <ul>
-      <li>Giliran ke berapa pemain pertama membuka kartu?</li>
-      <li>Apakah ada pemain yang terjebak? Kapan?</li>
-      <li>Apakah ada momen "dilema" yang terlihat jelas?</li>
-      <li>Berapa lama rata-rata satu giliran?</li>
-      <li>Apakah pemain saling memblokir?</li>
-      <li>Apakah ada tawa, helaan napas, atau ekspresi frustrasi?</li>
-    </ul>
-  </section>
-
-  <!-- ======================== SECTION 4 ======================== -->
-  <section id="observasi">
-    <h2>📝 Bagian 4 — Lembar Observasi Fasilitator</h2>
-
-    <div class="grid-2">
-      <div class="form-line"><label>Sesi</label><input type="text" placeholder="mis. 01"></div>
-      <div class="form-line"><label>Tanggal</label><input type="date"></div>
-      <div class="form-line"><label>Pemain A</label><input type="text" placeholder="Nama"></div>
-      <div class="form-line"><label>Pemain B</label><input type="text" placeholder="Nama"></div>
-      <div class="form-line"><label>Durasi (menit)</label><input type="number" placeholder="25"></div>
-    </div>
-
-    <h3>Log Giliran</h3>
-    <table>
-      <thead>
-        <tr><th>Giliran</th><th>Aksi</th><th>Kartu</th><th>Koin A</th><th>Koin B</th><th>Catatan</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr>
-      </tbody>
-    </table>
-
-    <h3>Pertanyaan Setelah Sesi</h3>
-    <ol>
-      <li>Pemain pertama tereliminasi pada giliran ke-<input type="number" style="width:70px;"> </li>
-      <li>Permainan berakhir karena: <br>
-        <label><input type="radio" name="end"> Semua kartu habis</label><br>
-        <label><input type="radio" name="end"> Eliminasi</label><br>
-        <label><input type="radio" name="end"> Lainnya:</label> <input type="text" style="width:180px;">
-      </li>
-      <li>Total kartu terbuka: <input type="number" style="width:70px;"> dari 64</li>
-      <li>Skor akhir: Pemain A = <input type="number" style="width:70px;"> | Pemain B = <input type="number" style="width:70px;"></li>
-      <li>Apakah ada momen stalemate? <label><input type="radio" name="stale"> Ya</label> <label><input type="radio" name="stale"> Tidak</label></li>
-      <li>Apakah ada aturan yang perlu diulang lebih dari 2 kali? <input type="text" style="width:100%; margin-top:0.5rem;"></li>
-    </ol>
-  </section>
-
-  <!-- ======================== SECTION 5 ======================== -->
-  <section id="feedback">
-    <h2>💬 Bagian 5 — Lembar Feedback Pemain</h2>
-
-    <div class="form-line"><label>Nama (opsional)</label><input type="text"></div>
-
-    <p><strong>1. Apakah aturan mudah dipahami?</strong></p>
-    <div class="rating" data-name="q1">
-      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    </div>
-
-    <p><strong>2. Apakah keputusan membuka kartu terasa sulit?</strong></p>
-    <div class="rating" data-name="q2">
-      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    </div>
-
-    <p><strong>3. Apakah kamu merasa punya kendali atas hasil?</strong></p>
-    <div class="rating" data-name="q3">
-      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    </div>
-
-    <p><strong>4. Apakah permainan terasa terlalu cepat / terlalu lama?</strong></p>
-    <div class="rating" data-name="q4">
-      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    </div>
-
-    <p><strong>5. Apakah tema laut dan sampah terasa?</strong></p>
-    <div class="rating" data-name="q5">
-      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    </div>
-
-    <div class="form-line"><label>Momen paling menyenangkan</label><textarea></textarea></div>
-    <div class="form-line"><label>Momen paling membosankan</label><textarea></textarea></div>
-    <div class="form-line"><label>Jika bisa mengubah 1 aturan</label><textarea></textarea></div>
-
-    <p><strong>9. Apakah kamu mau main lagi?</strong></p>
-    <p>
-      <label><input type="radio" name="again"> Ya</label> &nbsp;
-      <label><input type="radio" name="again"> Tidak</label> &nbsp;
-      <label><input type="radio" name="again"> Mungkin</label>
-    </p>
-
-    <div class="form-line"><label>Saran lain</label><textarea></textarea></div>
-  </section>
-
-  <!-- ======================== SECTION 6 ======================== -->
-  <section id="penutup">
-    <h2>🎤 Bagian 6 — Skrip Penutup (3 menit)</h2>
-
-    <div class="script-box">
-      Terima kasih sudah bermain. Sekarang saya mau dengar pendapat kalian. Tidak ada jawaban yang salah.
-    </div>
-
-    <ol>
-      <li>Apa yang paling kamu sukai dari permainan ini?</li>
-      <li>Apa yang paling membingungkan atau mengganggu?</li>
-      <li>Kalau kamu bisa mengubah satu hal, apa itu?</li>
-      <li>Apakah kamu merasa permainan ini adil? Kenapa?</li>
-      <li>Apakah kamu mau main lagi dengan aturan yang sama, atau ada yang perlu diubah dulu?</li>
-    </ol>
-
-    <div class="tip">
-      Catat semua jawaban. Jangan berdebat. Jangan membela desain.
-    </div>
-  </section>
-
-  <!-- ======================== SECTION 7 ======================== -->
-  <section id="analisis">
-    <h2>📊 Bagian 7 — Analisis Setelah 5 Sesi</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Metrik</th><th>Sesi 1</th><th>Sesi 2</th><th>Sesi 3</th><th>Sesi 4</th><th>Sesi 5</th><th>Rata-rata</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Durasi (menit)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Giliran eliminasi pertama</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Kartu terbuka</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Skor tertinggi</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Skor terendah</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Rating kepuasan (1–5)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      </tbody>
-    </table>
-
-    <h3>Keputusan Setelah 5 Sesi</h3>
-    <ul>
-      <li>Jika eliminasi terlalu cepat (&lt; 10 giliran): tambah ikan, kurangi karang.</li>
-      <li>Jika permainan terlalu lama (&gt; 40 menit): kecilkan papan jadi 6×6.</li>
-      <li>Jika pemain bingung: sederhanakan efek kartu.</li>
-      <li>Jika pemain bosan: tambahkan satu kartu kemampuan khusus.</li>
-    </ul>
-  </section>
-
-  <!-- ======================== SECTION 8 ======================== -->
-  <section id="catatan">
-    <h2>📌 Bagian 8 — Catatan Fasilitator</h2>
-
-    <div class="warn">
-      <strong>Hal yang harus dihindari:</strong>
-      <ul style="margin:0.5rem 0 0;">
-        <li>Jangan menjelaskan strategi.</li>
-        <li>Jangan mengoreksi langkah pemain.</li>
-        <li>Jangan menambah aturan di tengah permainan.</li>
-        <li>Jangan memihak salah satu pemain.</li>
-        <li>Jangan lupa mencatat waktu.</li>
-      </ul>
-    </div>
-
-    <div class="tip">
-      <strong>Hal yang harus dilakukan:</strong>
-      <ul style="margin:0.5rem 0 0;">
-        <li>Biarkan pemain membuat kesalahan.</li>
-        <li>Catat semua pertanyaan yang muncul.</li>
-        <li>Perhatikan ekspresi wajah dan bahasa tubuh.</li>
-        <li>Tanyakan "kenapa" setelah permainan, bukan saat bermain.</li>
-        <li>Ucapkan terima kasih di akhir.</li>
-      </ul>
-    </div>
-
-    <h3>Lampiran — Kartu Konservasi (Opsional)</h3>
-    <p>
-      Cetak 12 kartu kecil bertuliskan <strong>"Konservasi"</strong>. Setiap kali pemain membuka karang, ia mengambil 1 kartu ini. Di akhir permainan, setiap kartu Konservasi = 1 koin.
-    </p>
-    <p>Ini memberi insentif untuk "membersihkan" karang, bukan menghindarinya.</p>
-  </section>
-
-  <!-- ======================== ACTIONS ======================== -->
-  <div class="actions">
-    <button onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
-    <button class="secondary" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️ Ke Atas</button>
   </div>
 
-</main>
+  <!-- GAME SCREEN -->
+  <div id="gameScreen" class="hidden">
+
+    <div class="status-bar" id="statusBar">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="message info" id="messageBar">Pilih aksi: Bergerak atau Buka Kartu</div>
+
+    <div class="board-wrapper">
+      <div class="board" id="board"></div>
+    </div>
+
+    <div class="actions-bar" id="actionsBar">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="log" id="log">
+      <p>Permainan dimulai.</p>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="secondary" onclick="resetGame()" style="background:var(--muted);color:white;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;font-family:inherit;">🔄 Main Lagi</button>
+    </div>
+  </div>
+
+</div>
 
 <footer>
-  <p>ZTRATAX OCEAN — Playtest Kit v1.0</p>
-  <p>Dibuat untuk eksperimen desain game. Bebas dimodifikasi.</p>
+  ZTRATAX OCEAN — Playtest v1.0 · Dibuat untuk eksperimen desain game
 </footer>
 
 <script>
-  // Rating selector
-  document.querySelectorAll('.rating').forEach(function (group) {
-    group.querySelectorAll('span').forEach(function (star) {
-      star.addEventListener('click', function () {
-        group.querySelectorAll('span').forEach(function (s) {
-          s.classList.remove('selected');
-        });
-        star.classList.add('selected');
-      });
-    });
-  });
+// ============================================================
+// GAME STATE
+// ============================================================
+const BOARD_SIZE = 8;
+const CARD_TYPES = {
+  fish:  { count: 24, label: '🐟', name: 'Ikan',   effect: +2 },
+  trash: { count: 20, label: '🗑️', name: 'Sampah', effect: -1 },
+  coral: { count: 12, label: '🪸', name: 'Karang', effect: -2, conservation: 1 },
+  empty: { count: 8,  label: '🌊', name: 'Kosong', effect: 0 }
+};
 
-  // Auto-save form fields to localStorage
-  document.querySelectorAll('input, textarea').forEach(function (el, i) {
-    var key = 'ztrax_field_' + i;
-    if (el.type !== 'radio' && el.type !== 'checkbox') {
-      var saved = localStorage.getItem(key);
-      if (saved !== null) el.value = saved;
-      el.addEventListener('input', function () {
-        localStorage.setItem(key, el.value);
+const PLAYER_COLORS = ['#e53935', '#1e88e5', '#43a047', '#fb8c00'];
+const PLAYER_NAMES = ['Merah', 'Biru', 'Hijau', 'Oranye'];
+const START_SIDES = [
+  { row: -1, col: 4, label: 'Utara' },
+  { row: 8,  col: 3, label: 'Selatan' },
+  { row: 4,  col: -1, label: 'Barat' },
+  { row: 3,  col: 8, label: 'Timur' }
+];
+
+let state = {};
+
+function createDeck() {
+  const deck = [];
+  for (const [type, cfg] of Object.entries(CARD_TYPES)) {
+    for (let i = 0; i < cfg.count; i++) deck.push(type);
+  }
+  // Fisher-Yates shuffle
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck;
+}
+
+function initGame(numPlayers) {
+  const deck = createDeck();
+  const board = [];
+  for (let r = 0; r < BOARD_SIZE; r++) {
+    board[r] = [];
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      board[r][c] = { card: deck.pop(), revealed: false, hole: false };
+    }
+  }
+
+  state = {
+    board,
+    numPlayers,
+    players: [],
+    currentPlayer: 0,
+    gameOver: false,
+    revealedCount: 0,
+    log: [],
+    turnPhase: 'move', // 'move' or 'reveal'
+    selectedCell: null
+  };
+
+  for (let i = 0; i < numPlayers; i++) {
+    state.players.push({
+      id: i,
+      row: START_SIDES[i].row,
+      col: START_SIDES[i].col,
+      coins: 5,
+      conservation: 0,
+      eliminated: false,
+      name: PLAYER_NAMES[i],
+      color: PLAYER_COLORS[i]
+    });
+  }
+
+  log('Permainan dimulai dengan ' + numPlayers + ' pemain.');
+  log('Pemain 1 (' + PLAYER_NAMES[0] + ') mulai dari sisi ' + START_SIDES[0].label + '.');
+  render();
+}
+
+function log(msg) {
+  state.log.push(msg);
+  const logEl = document.getElementById('log');
+  if (logEl) {
+    const p = document.createElement('p');
+    p.innerHTML = msg;
+    logEl.appendChild(p);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+}
+
+// ============================================================
+// POSITION HELPERS
+// ============================================================
+function isOutside(row, col) {
+  return row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE;
+}
+
+function getNeighbors(row, col) {
+  const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
+  const result = [];
+  for (const [dr, dc] of dirs) {
+    const nr = row + dr, nc = col + dc;
+    if (!isOutside(nr, nc)) result.push({ row: nr, col: nc });
+  }
+  return result;
+}
+
+function canMoveTo(row, col) {
+  if (isOutside(row, col)) return false;
+  const cell = state.board[row][col];
+  if (cell.hole || cell.revealed) return false;
+  // Check if another player is there
+  for (const p of state.players) {
+    if (!p.eliminated && p.row === row && p.col === col) return false;
+  }
+  return true;
+}
+
+function canRevealFrom(row, col) {
+  if (isOutside(row, col)) {
+    // From outside, can reveal any edge cell that is still hidden
+    return true;
+  }
+  return true; // Can always attempt to reveal a neighbor
+}
+
+// ============================================================
+// PLAYER ACTIONS
+// ============================================================
+function selectMoveTarget(row, col) {
+  if (state.gameOver) return;
+  const p = state.players[state.currentPlayer];
+  if (p.eliminated) { nextPlayer(); return; }
+
+  // Only allow moving to adjacent cells
+  const dr = Math.abs(row - p.row);
+  const dc = Math.abs(col - p.col);
+  if (dr + dc !== 1 && !(isOutside(p.row, p.col) && isOutside(row, col))) {
+    // If outside, allow moving to any edge cell
+    if (isOutside(p.row, p.col)) {
+      if (isOutside(row, col)) return;
+    } else {
+      return;
+    }
+  }
+
+  if (!canMoveTo(row, col)) {
+    setMessage('Tidak bisa bergerak ke sana.', 'lose');
+    return;
+  }
+
+  p.row = row;
+  p.col = col;
+  log('<span class="highlight">' + p.name + '</span> bergerak ke (' + (row+1) + ',' + (col+1) + ').');
+
+  // Auto-reveal if on a hidden card
+  const cell = state.board[row][col];
+  if (!cell.revealed && !cell.hole) {
+    revealCard(row, col);
+  } else {
+    nextPlayer();
+  }
+  render();
+}
+
+function revealCard(row, col) {
+  const cell = state.board[row][col];
+  if (cell.revealed || cell.hole) return;
+
+  const p = state.players[state.currentPlayer];
+  const type = cell.card;
+  const cfg = CARD_TYPES[type];
+
+  cell.revealed = true;
+  cell.hole = true; // Mandatory discard
+  state.revealedCount++;
+
+  // Apply effect
+  p.coins += cfg.effect;
+  if (cfg.conservation) p.conservation += cfg.conservation;
+
+  const coinStr = cfg.effect >= 0 ? '+' + cfg.effect : cfg.effect;
+  log('<span class="highlight">' + p.name + '</span> membuka ' + cfg.label + ' ' + cfg.name +
+      ' (' + coinStr + ' koin). Koin: ' + p.coins);
+
+  // Check bankruptcy
+  if (p.coins <= -5) {
+    p.eliminated = true;
+    log('💀 <span class="highlight">' + p.name + '</span> bangkrut dan tereliminasi!');
+  }
+
+  // Check if trapped
+  checkTrapped(p);
+
+  // Check game over
+  checkGameOver();
+
+  if (!state.gameOver) nextPlayer();
+  render();
+}
+
+function checkTrapped(p) {
+  if (p.eliminated) return;
+  // Check if player can move anywhere
+  let canMove = false;
+
+  if (isOutside(p.row, p.col)) {
+    // From outside, can move to any edge cell that is not a hole
+    for (let r = 0; r < BOARD_SIZE; r++) {
+      for (let c = 0; c < BOARD_SIZE; c++) {
+        if ((r === 0 || r === BOARD_SIZE-1 || c === 0 || c === BOARD_SIZE-1) && canMoveTo(r, c)) {
+          canMove = true;
+        }
+      }
+    }
+  } else {
+    const neighbors = getNeighbors(p.row, p.col);
+    for (const n of neighbors) {
+      if (canMoveTo(n.row, n.col)) { canMove = true; break; }
+    }
+  }
+
+  if (!canMove) {
+    p.eliminated = true;
+    log('💀 <span class="highlight">' + p.name + '</span> terjebak dan tereliminasi!');
+  }
+}
+
+function checkGameOver() {
+  const alive = state.players.filter(p => !p.eliminated);
+  if (alive.length <= 1 || state.revealedCount >= 64) {
+    state.gameOver = true;
+    let winner = null;
+    if (alive.length === 1) {
+      winner = alive[0];
+    } else if (alive.length > 1) {
+      winner = alive.reduce((a, b) => a.coins >= b.coins ? a : b);
+    }
+    render();
+  }
+}
+
+function nextPlayer() {
+  if (state.gameOver) return;
+  const alive = state.players.filter(p => !p.eliminated);
+  if (alive.length <= 1) { checkGameOver(); return; }
+
+  let attempts = 0;
+  do {
+    state.currentPlayer = (state.currentPlayer + 1) % state.numPlayers;
+    attempts++;
+    if (attempts > state.numPlayers * 2) break;
+  } while (state.players[state.currentPlayer].eliminated);
+
+  // Check trapped at start of turn
+  const p = state.players[state.currentPlayer];
+  if (!p.eliminated) checkTrapped(p);
+  if (p.eliminated) { nextPlayer(); return; }
+
+  state.turnPhase = 'move';
+  setMessage(p.name + ', giliranmu. Pilih aksi.', 'info');
+}
+
+function setMessage(text, type) {
+  const el = document.getElementById('messageBar');
+  el.textContent = text;
+  el.className = 'message ' + type;
+}
+
+// ============================================================
+// RENDERING
+// ============================================================
+function render() {
+  const boardEl = document.getElementById('board');
+  const statusEl = document.getElementById('statusBar');
+  const actionsEl = document.getElementById('actionsBar');
+  const msgEl = document.getElementById('messageBar');
+
+  // --- STATUS BAR ---
+  let statusHTML = '';
+  for (const p of state.players) {
+    const active = p.id === state.currentPlayer && !state.gameOver ? ' active' : '';
+    const elim = p.eliminated ? ' eliminated' : '';
+    statusHTML += '<div class="player-info' + active + elim + '">' +
+      '<div class="player-dot" style="background:' + p.color + '"></div>' +
+      '<div><div class="player-name">' + p.name + '</div>' +
+      '<div class="player-coins">💰 ' + p.coins + ' koin' +
+      (p.conservation > 0 ? ' · 🌿 ' + p.conservation : '') + '</div></div></div>';
+  }
+
+  if (state.gameOver) {
+    const alive = state.players.filter(p => !p.eliminated);
+    const winner = alive.length > 0 ? alive.reduce((a, b) => a.coins >= b.coins ? a : b) : null;
+    statusHTML += '<div class="turn-indicator" style="color:var(--kelp);">🏆 ' +
+      (winner ? winner.name + ' menang dengan ' + winner.coins + ' koin!' : 'Semua pemain bangkrut.') + '</div>';
+  } else {
+    statusHTML += '<div class="turn-indicator">Giliran: ' +
+      state.players[state.currentPlayer].name + '</div>';
+  }
+  statusEl.innerHTML = statusHTML;
+
+  // --- BOARD ---
+  boardEl.innerHTML = '';
+  for (let r = 0; r < BOARD_SIZE; r++) {
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      const cell = state.board[r][c];
+      const div = document.createElement('div');
+      div.className = 'cell';
+      div.dataset.row = r;
+      div.dataset.col = c;
+
+      if (cell.hole) {
+        div.classList.add('hole');
+      } else if (cell.revealed) {
+        div.classList.add('revealed');
+      } else {
+        // Check if current player can move here
+        const p = state.players[state.currentPlayer];
+        if (!p.eliminated && !state.gameOver) {
+          if (isOutside(p.row, p.col)) {
+            // Can move to edge
+            if (r === 0 || r === BOARD_SIZE-1 || c === 0 || c === BOARD_SIZE-1) {
+              if (canMoveTo(r, c)) div.classList.add('clickable');
+            }
+          } else {
+            const dr = Math.abs(r - p.row);
+            const dc = Math.abs(c - p.col);
+            if (dr + dc === 1 && canMoveTo(r, c)) {
+              div.classList.add('clickable');
+            }
+          }
+        }
+      }
+
+      // Card faces
+      const inner = document.createElement('div');
+      inner.className = 'card-inner';
+
+      const front = document.createElement('div');
+      front.className = 'card-face card-front';
+      inner.appendChild(front);
+
+      const back = document.createElement('div');
+      back.className = 'card-face card-back ' + (cell.card || 'empty');
+      const cfg = CARD_TYPES[cell.card] || CARD_TYPES.empty;
+      back.textContent = cfg.label;
+      inner.appendChild(back);
+
+      div.appendChild(inner);
+
+      // Ship
+      for (const p of state.players) {
+        if (!p.eliminated && p.row === r && p.col === c) {
+          const ship = document.createElement('div');
+          ship.className = 'ship p' + p.id;
+          ship.textContent = p.id + 1;
+          div.appendChild(ship);
+        }
+      }
+
+      // Highlight selected
+      if (state.selectedCell && state.selectedCell.row === r && state.selectedCell.col === c) {
+        div.classList.add('highlight');
+      }
+
+      // Click handler
+      div.addEventListener('click', (function(rr, cc) {
+        return function() { onCellClick(rr, cc); };
+      })(r, c));
+
+      boardEl.appendChild(div);
+    }
+  }
+
+  // Outside ships
+  for (const p of state.players) {
+    if (!p.eliminated && isOutside(p.row, p.col)) {
+      // Show outside ship in status
+      const el = document.getElementById('statusBar');
+      if (el) {
+        const badge = document.createElement('div');
+        badge.style.cssText = 'font-size:0.7rem;color:' + p.color + ';font-weight:700;';
+        badge.textContent = '⚓ ' + p.name + ' di ' + (START_SIDES[p.id] ? START_SIDES[p.id].label : 'luar');
+        // Append to status indicator
+      }
+    }
+  }
+
+  // --- ACTIONS ---
+  if (state.gameOver) {
+    actionsEl.innerHTML = '<button onclick="resetGame()">🔄 Main Lagi</button>';
+  } else {
+    const p = state.players[state.currentPlayer];
+    let actionsHTML = '';
+    // The game is click-based, so just show info
+    actionsHTML = '<span style="font-size:0.8rem;color:var(--muted);">' +
+      'Klik petak biru untuk bergerak · Klik petak yang sudah dibuka untuk membuka kartu baru di sebelahnya</span>';
+    actionsEl.innerHTML = actionsHTML;
+  }
+}
+
+function onCellClick(row, col) {
+  if (state.gameOver) return;
+  const p = state.players[state.currentPlayer];
+  if (p.eliminated) return;
+
+  const cell = state.board[row][col];
+
+  // If clicking a hidden edge cell while outside, move there
+  if (isOutside(p.row, p.col)) {
+    if (canMoveTo(row, col)) {
+      selectMoveTarget(row, col);
+      return;
+    }
+  }
+
+  // If clicking adjacent hidden cell, move there
+  if (!isOutside(p.row, p.col)) {
+    const dr = Math.abs(row - p.row);
+    const dc = Math.abs(col - p.col);
+    if (dr + dc === 1 && canMoveTo(row, col)) {
+      selectMoveTarget(row, col);
+      return;
+    }
+  }
+
+  // If clicking a revealed/hole cell, try to reveal a neighbor
+  if (cell.hole) {
+    // Find a hidden neighbor to reveal
+    const neighbors = getNeighbors(row, col);
+    const hiddenNeighbors = neighbors.filter(n => {
+      const nc = state.board[n.row][n.col];
+      return !nc.hole && !nc.revealed;
+    });
+
+    if (hiddenNeighbors.length === 0) {
+      setMessage('Tidak ada kartu tersembunyi di sekitar petak itu.', 'lose');
+      return;
+    }
+
+    // If only one, reveal it
+    if (hiddenNeighbors.length === 1) {
+      revealCard(hiddenNeighbors[0].row, hiddenNeighbors[0].col);
+      return;
+    }
+
+    // If multiple, let player choose by highlighting
+    state.selectedCell = { row, col };
+    setMessage('Pilih salah satu kartu tersembunyi di sekitar petak ini.', 'info');
+    render();
+    // Highlight hidden neighbors
+    for (const n of hiddenNeighbors) {
+      const cells = document.querySelectorAll('.cell');
+      cells.forEach(c => {
+        if (parseInt(c.dataset.row) === n.row && parseInt(c.dataset.col) === n.col) {
+          c.classList.add('highlight');
+        }
       });
     }
-  });
+    return;
+  }
 
-  // Restore radio buttons
-  document.querySelectorAll('input[type="radio"]').forEach(function (el, i) {
-    var key = 'ztrax_radio_' + i;
-    if (localStorage.getItem(key) === 'checked') el.checked = true;
-    el.addEventListener('change', function () {
-      if (el.checked) localStorage.setItem(key, 'checked');
-    });
-  });
+  // If clicking hidden cell that's not adjacent, show message
+  setMessage('Kamu hanya bisa bergerak ke petak yang bersebelahan.', 'lose');
+}
+
+function resetGame() {
+  document.getElementById('setupScreen').classList.remove('hidden');
+  document.getElementById('gameScreen').classList.add('hidden');
+  document.getElementById('log').innerHTML = '';
+  state = {};
+}
+
+function startGame(numPlayers) {
+  document.getElementById('setupScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+  initGame(numPlayers);
+  render();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Show setup screen initially
+  document.getElementById('setupScreen').classList.remove('hidden');
+  document.getElementById('gameScreen').classList.add('hidden');
+});
 </script>
-
 </body>
 </html>
