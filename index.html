@@ -1,5 +1,689 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071e30"><title>ZTRATAX OCEAN — The Great Current</title><style>
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#e9f8fc;background:#071725}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 10%,#19465d,#071725 75%);min-height:100vh}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #ffe39a;outline-offset:3px}.wrap{max-width:1160px;margin:auto;padding:18px 16px 48px}header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.eyebrow{color:#8fe9e5;font-size:11px;letter-spacing:.25em;font-weight:800}h1{font-size:clamp(26px,4vw,43px);margin:2px 0;letter-spacing:.08em}.sub{color:#a8cbd6;font-size:13px}.btn{border:1px solid #50b4bd;background:#17aeb8;color:#05212b;padding:11px 17px;border-radius:12px;font-weight:800}.btn.secondary{background:#173a50;color:#ddf8ff;border-color:#37697e}.btn:disabled{opacity:.38;cursor:not-allowed}.topstats{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0}.chip{background:#12394e;border:1px solid #315e71;border-radius:12px;padding:10px 16px;min-width:120px}.chip small{display:block;color:#94bdcb;font-size:10px;letter-spacing:.09em}.chip strong{font-size:18px}.scene{perspective:1100px;overflow:hidden;padding:4px 0 18px}.table-shell{position:relative;border:13px solid #4e2b1a;border-bottom-color:#24140e;border-top-color:#815137;border-radius:47% / 18%;min-height:460px;box-shadow:inset 0 0 0 3px #bb8754,0 35px 38px #0009,0 8px 0 #25130e;background:radial-gradient(ellipse at 50% 45%,#14627a,#0b394f 62%,#062638);transform:rotateX(12deg);transform-origin:center 80%;isolation:isolate}.table-shell:before{content:"";position:absolute;inset:15px;border:1px dashed #7dd5db4b;border-radius:47% / 18%;pointer-events:none}.bubbles{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}.bubble{position:absolute;bottom:-30px;border:1px solid #b8f6ff77;border-radius:50%;animation:float 9s linear infinite;opacity:.6}@keyframes float{to{transform:translateY(-540px) translateX(24px);opacity:0}}.seat{position:absolute;display:flex;align-items:center;gap:9px;background:#052335bd;border:1px solid #65bbcc6b;border-radius:14px;padding:9px 12px;z-index:2;box-shadow:0 6px 15px #0018}.seat .avatar{font-size:29px}.seat strong{font-size:13px}.seat small{display:block;color:#a5d4dc;font-size:11px}.seat.left{top:37%;left:3%}.seat.right{top:37%;right:3%}.seat.bottom{bottom:17px;left:50%;transform:translateX(-50%)}.center{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:18px}.deck{width:90px;height:126px;border-radius:12px;border:3px solid #b5e2d7;background:repeating-linear-gradient(45deg,#0c5267,#0c5267 8px,#0b4559 8px,#0b4559 16px);box-shadow:5px 7px 0 #031b2c,9px 11px 0 #06283a,0 15px 22px #0008;display:grid;place-items:center;text-align:center;font-weight:900;letter-spacing:.13em;font-size:12px}.current-card{width:104px;height:145px;border:3px solid #a9d8df;border-radius:12px;background:linear-gradient(160deg,#197a91,#0b4059);box-shadow:0 10px 22px #001b2c;display:grid;place-items:center;text-align:center;transition:transform .55s}.current-card .arrow{font-size:60px;line-height:1}.current-card.hidden-face{background:repeating-linear-gradient(45deg,#0d4a61,#0d4a61 10px,#12627b 10px,#12627b 20px)}.current-card.reveal{animation:flip .7s ease}@keyframes flip{0%{transform:rotateY(90deg) scale(.9)}100%{transform:rotateY(0) scale(1)}}.table-label{position:absolute;left:50%;top:14%;transform:translateX(-50%);letter-spacing:.22em;color:#b3e7eb;font-size:11px;font-weight:900;white-space:nowrap}.hand-on-table{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:2}.mini{height:69px;width:48px;border:2px solid #a5dce0;border-radius:7px;background:linear-gradient(#176f83,#0b4056);display:grid;place-items:center;font-size:28px;box-shadow:2px 4px 6px #0019;transition:transform .3s}.mini.active{transform:translateY(-19px);border-color:#ffd27e;box-shadow:0 0 15px #ffd27e88}.panel{background:#0c2b3c;border:1px solid #2d5d71;border-radius:18px;padding:17px;margin-top:14px}.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:14px}h2{font-size:18px;margin:0 0 10px}.muted{color:#a3c9d4;font-size:13px;line-height:1.6}.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 0}.direction{position:relative;min-height:165px;padding:6px;border:2px solid #32657a;background:linear-gradient(#14566d,#092e43);border-radius:12px;color:#f4fdff;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}.direction:hover:not(:disabled){transform:translateY(-5px)}.direction.selected{border-color:#ffcf72;box-shadow:0 0 0 2px #ffcf7233,0 10px 25px #0008;transform:translateY(-6px)}.direction:disabled{cursor:default}.direction svg{width:100%;height:96px;display:block}.direction .label{font-weight:800;font-size:12px}.direction .symbol{font-size:18px;margin-right:5px}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.status{font-size:13px;color:#8ce8dc;min-height:24px;margin:10px 0}.score-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #305668;font-size:14px}.score-row:last-child{border:0}.log{line-height:1.8;font-size:13px;color:#d5eef5}.hidden{display:none!important}.power{margin-top:12px;border:1px solid #3e7282;border-radius:12px;padding:12px;background:#103b4f}.legend{font-size:12px;color:#acd0d8}.footer{font-size:12px;color:#8cb4c0;margin-top:17px}.wake{position:absolute;left:50%;top:50%;width:170px;height:170px;border:2px solid #a4efff44;border-radius:50%;transform:translate(-50%,-50%);animation:ripple 3s ease-out infinite;pointer-events:none}.wake:nth-child(2){animation-delay:1.5s}@keyframes ripple{from{width:20px;height:20px;opacity:1}to{width:270px;height:270px;opacity:0}}.swim{position:absolute;font-size:27px;left:15%;top:24%;opacity:.6;animation:swim 11s ease-in-out infinite alternate;pointer-events:none}@keyframes swim{to{left:77%;top:29%;transform:scaleX(-1)}}@media(max-width:760px){.grid{grid-template-columns:1fr}.table-shell{min-height:350px;border-width:8px;border-radius:37% / 14%}.center{gap:10px}.deck{width:62px;height:90px;font-size:9px}.current-card{width:73px;height:102px}.current-card .arrow{font-size:42px}.seat{padding:6px;gap:3px}.seat .avatar{font-size:20px}.seat strong{font-size:10px}.seat small{font-size:9px}.seat.left{left:1%;top:24%}.seat.right{right:1%;top:24%}.seat.bottom{bottom:8px}.hand-on-table{bottom:64px}.mini{height:45px;width:31px;font-size:18px}.table-label{top:10%;font-size:9px}.direction{min-height:127px}.direction svg{height:75px}.choices{gap:5px}.direction .label{font-size:10px}.wrap{padding:12px 9px 30px}.panel{padding:13px}}
-</style></head><body><main class="wrap"><header><div><div class="eyebrow">ZTRATAX • OCEAN PROTOTYPE 2.0</div><h1>THE GREAT CURRENT</h1><div class="sub">Strategi migrasi hewan laut • Tampilan meja perspektif</div></div><button class="btn secondary" id="restart">↻ Main baru</button></header><div class="topstats"><div class="chip"><small>RONDE</small><strong id="round">1 / 8</strong></div><div class="chip"><small>ARUS TERSISA</small><strong id="remaining">8</strong></div><div class="chip"><small>POWER MOVE</small><strong id="powerStatus">Siap</strong></div></div><section class="scene" aria-label="Meja permainan perspektif"><div class="table-shell"><div class="bubbles" id="bubbles"></div><div class="wake"></div><div class="wake"></div><span class="swim">🐟</span><div class="table-label">SAMUDRA • ARENA MIGRASI</div><div class="seat left"><span class="avatar">🐙</span><div><strong>KOMPUTER A</strong><small id="seatA">0 poin</small></div></div><div class="seat right"><span class="avatar">🦈</span><div><strong>KOMPUTER B</strong><small id="seatB">0 poin</small></div></div><div class="center"><div class="deck">ZTRATAX<br>OCEAN<br>🌊</div><div class="current-card hidden-face" id="tableCurrent"><div><div class="arrow" id="tableArrow">?</div><small id="tableCurrentName">ARUS</small></div></div></div><div class="hand-on-table" id="tableHand"></div><div class="seat bottom"><span class="avatar">🐢</span><div><strong>ANDA</strong><small id="seatYou">0 poin</small></div></div></div></section><div class="grid"><section class="panel"><h2>Pilih kartu navigasi</h2><p class="muted">Klik satu kartu bergambar hewan. Setiap kartu mewakili arah migrasi. Setelah memilih, buka arus samudra.</p><div class="choices" id="choices"></div><div class="actions"><button class="btn" id="play" disabled>🌊 Buka arus</button><button class="btn secondary hidden" id="finish">Selesaikan ronde →</button></div><div class="status" id="status" aria-live="polite">Pilih satu arah untuk memulai.</div><div class="power hidden" id="powerPanel"><strong>⚡ POWER MOVE</strong><p class="muted" id="moveHelp">Putar pilihan 90° satu kali per pertandingan setelah arus terlihat.</p><div class="actions" id="powerButtons"><button class="btn secondary" id="rotateLeft">↶ Putar kiri</button><button class="btn secondary" id="rotateRight">Putar kanan ↷</button></div></div></section><aside class="panel"><h2>Papan skor</h2><div id="scores"></div><h2 style="margin-top:20px">Hasil ronde</h2><div class="log" id="log">Belum ada ronde dimainkan.</div></aside></div><section class="panel"><h2>Aturan singkat</h2><p class="muted">Anda melawan dua komputer selama delapan ronde. Kartu arus terdiri dari Utara, Timur, Selatan, Barat, masing-masing dua. Pilih satu kartu navigasi secara rahasia, lalu buka arus. Arah yang sama dengan arus bernilai 3 poin, arah berlawanan 0 poin, dan arah samping 1 poin. Jika beberapa pemain memilih arah yang sama, poin dibagi rata dan dibulatkan ke bawah. Setiap pemain memiliki satu Power Move untuk memutar arah 90° setelah arus terungkap.</p><div class="legend">Ilustrasi hewan adalah gambar SVG yang dibuat langsung dalam kode. Tidak memerlukan gambar eksternal, library, atau koneksi internet.</div></section><div class="footer">ZTRATAX OCEAN · Satu file HTML · Animasi CSS + ilustrasi SVG · GitHub Pages ready</div></main><script>
-(()=>{'use strict';const names=['Utara','Timur','Selatan','Barat'],arrows=['↑','→','↓','←'],emoji=['🐢','🐙','🦈','🐬'],colors=['#3abf8a','#ba85df','#6bb6dd','#f6b85c'];const el=id=>document.getElementById(id);let s;const rnd=n=>Math.floor(Math.random()*n);function shuffle(a){for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function base(d,c){const diff=(d-c+4)%4;return diff===0?3:diff===2?0:1}function points(ds,c){return ds.map(d=>Math.floor(base(d,c)/ds.filter(x=>x===d).length))}function art(i){const col=colors[i];const sea=`<defs><linearGradient id="sea${i}" x2="0" y2="1"><stop stop-color="#247d96"/><stop offset="1" stop-color="#092d48"/></linearGradient></defs><rect width="120" height="110" rx="9" fill="url(#sea${i})"/><path d="M0 86 Q30 74 60 88 T120 83 V110 H0" fill="#1c8c93" opacity=".45"/><circle cx="20" cy="23" r="3" fill="#a8efff" opacity=".6"/><circle cx="101" cy="18" r="5" fill="#a8efff" opacity=".35"/>`;let animal='';if(i===0)animal=`<ellipse cx="60" cy="55" rx="25" ry="19" fill="${col}"/><ellipse cx="60" cy="54" rx="14" ry="12" fill="#9fe2af"/><path d="M44 48 L25 34 L37 62 M77 48 L97 34 L85 62 M46 66 L32 81 L57 73 M74 66 L88 81 L63 73" fill="${col}"/><circle cx="52" cy="48" r="2" fill="#102b35"/>`;if(i===1)animal=`<ellipse cx="60" cy="39" rx="23" ry="24" fill="${col}"/><circle cx="52" cy="35" r="3" fill="#172d46"/><circle cx="68" cy="35" r="3" fill="#172d46"/><path d="M42 55 Q20 72 31 88 M49 57 Q36 79 49 92 M57 58 Q52 81 61 94 M65 58 Q74 80 72 94 M73 56 Q94 77 86 91 M80 53 Q105 64 102 84" fill="none" stroke="${col}" stroke-width="8" stroke-linecap="round"/>`;if(i===2)animal=`<path d="M26 56 Q52 27 84 47 L103 52 L84 60 Q51 85 26 56" fill="${col}"/><path d="M46 47 L35 31 L64 44 M45 64 L33 82 L67 67" fill="#9fdcf1"/><circle cx="89" cy="51" r="2" fill="#092b3c"/>`;if(i===3)animal=`<path d="M20 56 Q48 26 83 47 L102 56 L83 65 Q46 87 20 56" fill="${col}"/><path d="M30 53 L11 35 L13 76 Z" fill="${col}"/><path d="M53 40 L66 22 L74 45" fill="#ffe6ac"/><circle cx="85" cy="51" r="2" fill="#123b48"/>`;return `<svg viewBox="0 0 120 110" role="img" aria-label="Ilustrasi hewan laut">${sea}${animal}</svg>`}function reset(){s={round:1,deck:shuffle([0,0,1,1,2,2,3,3]),scores:[0,0,0],power:[true,true,true],selected:null,revealed:false,current:null,bots:[],log:'Belum ada ronde dimainkan.',finished:false};render()}function choose(d){if(s.revealed||s.finished)return;s.selected=d;render()}function reveal(){if(s.selected===null||s.revealed||s.finished)return;s.current=s.deck.pop();s.bots=[rnd(4),rnd(4)];s.revealed=true;render();el('tableCurrent').classList.remove('reveal');void el('tableCurrent').offsetWidth;el('tableCurrent').classList.add('reveal')}function rotate(delta){if(!s.revealed||!s.power[0])return;s.selected=(s.selected+delta+4)%4;s.power[0]=false;render()}function bots(ds){for(let i=1;i<=2;i++){if(!s.power[i])continue;let best=ds[i],bestPts=points(ds,s.current)[i];for(const d of [(ds[i]+3)%4,(ds[i]+1)%4]){const test=[...ds];test[i]=d;const p=points(test,s.current)[i];if(p>bestPts){best=d;bestPts=p}}if(best!==ds[i]){ds[i]=best;s.power[i]=false}}}function finish(){if(!s.revealed||s.finished)return;const ds=[s.selected,...s.bots];bots(ds);const gained=points(ds,s.current);s.scores=s.scores.map((v,i)=>v+gained[i]);s.log=`Arus: ${names[s.current]} ${arrows[s.current]}<br>`+['Anda','Komputer A','Komputer B'].map((p,i)=>`${p}: ${names[ds[i]]} — +${gained[i]} poin`).join('<br>');if(s.round===8){s.finished=true;const max=Math.max(...s.scores);const winners=['Anda','Komputer A','Komputer B'].filter((_,i)=>s.scores[i]===max);s.log+=`<hr><strong>Permainan selesai! Pemenang: ${winners.join(' & ')}.</strong>`}else{s.round++;s.selected=null;s.revealed=false;s.current=null;s.bots=[]}render()}function render(){el('round').textContent=`${s.round} / 8`;el('remaining').textContent=s.deck.length;el('powerStatus').textContent=s.power[0]?'Siap':'Terpakai';el('choices').innerHTML=names.map((n,i)=>`<button class="direction ${s.selected===i?'selected':''}" data-dir="${i}" aria-pressed="${s.selected===i}" ${s.revealed||s.finished?'disabled':''}>${art(i)}<span class="label"><span class="symbol">${arrows[i]}</span>${n}</span></button>`).join('');el('tableHand').innerHTML=emoji.map((e,i)=>`<div class="mini ${s.selected===i?'active':''}" title="${names[i]}">${e}</div>`).join('');el('play').disabled=s.selected===null||s.revealed||s.finished;el('play').classList.toggle('hidden',s.revealed||s.finished);el('finish').classList.toggle('hidden',!s.revealed);el('powerPanel').classList.toggle('hidden',!s.revealed);el('powerButtons').classList.toggle('hidden',!s.power[0]);el('moveHelp').textContent=s.power[0]?'Putar pilihan Anda 90° ke kiri atau kanan. Hanya bisa sekali dalam pertandingan.':'Power Move Anda sudah digunakan.';el('tableCurrent').classList.toggle('hidden-face',!s.revealed);el('tableArrow').textContent=s.revealed?arrows[s.current]:'?';el('tableCurrentName').textContent=s.revealed?names[s.current].toUpperCase():'ARUS';el('scores').innerHTML=['Anda','Komputer A','Komputer B'].map((p,i)=>`<div class="score-row"><span>${p} ${s.power[i]?'⚡':''}</span><strong>${s.scores[i]} poin</strong></div>`).join('');el('seatYou').textContent=s.scores[0]+' poin';el('seatA').textContent=s.scores[1]+' poin';el('seatB').textContent=s.scores[2]+' poin';el('log').innerHTML=s.log;el('status').textContent=s.finished?'Pertandingan selesai. Klik Main baru untuk mengulang.':s.revealed?'Arus terbuka. Gunakan Power Move atau selesaikan ronde.':s.selected===null?'Pilih satu arah untuk memulai.':`Pilihan Anda: ${names[s.selected]}. Siap membuka arus.`}el('choices').addEventListener('click',e=>{const b=e.target.closest('[data-dir]');if(b)choose(Number(b.dataset.dir))});el('play').addEventListener('click',reveal);el('rotateLeft').addEventListener('click',()=>rotate(-1));el('rotateRight').addEventListener('click',()=>rotate(1));el('finish').addEventListener('click',finish);el('restart').addEventListener('click',reset);for(let i=0;i<13;i++){const b=document.createElement('span');b.className='bubble';b.style.left=(5+i*7.3)+'%';b.style.width=b.style.height=(5+(i%4)*4)+'px';b.style.animationDelay=(-i*.67)+'s';el('bubbles').appendChild(b)}reset()})();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZTRATAX OCEAN — Playtest Kit</title>
+<style>
+  :root {
+    --deep: #0a2540;
+    --ocean: #1565c0;
+    --wave: #2196f3;
+    --foam: #e3f2fd;
+    --sand: #fff8e1;
+    --coral: #ff7043;
+    --kelp: #2e7d32;
+    --ink: #1a1a1a;
+    --muted: #607d8b;
+    --border: #cfd8dc;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--ink);
+    background: linear-gradient(180deg, #f5f9fc 0%, #e8f1f8 100%);
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--deep), var(--ocean));
+    color: white;
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.3);
+  }
+
+  header h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 0.1em;
+    font-weight: 800;
+  }
+
+  header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.05rem;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(10, 37, 64, 0.08);
+    border-left: 5px solid var(--wave);
+  }
+
+  section h2 {
+    margin-top: 0;
+    color: var(--deep);
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--foam);
+    padding-bottom: 0.5rem;
+  }
+
+  section h3 {
+    color: var(--ocean);
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  ul, ol { padding-left: 1.4rem; }
+
+  li { margin-bottom: 0.4rem; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--foam);
+    color: var(--deep);
+    font-weight: 700;
+  }
+
+  tr:hover { background: #f9fbfd; }
+
+  .script-box {
+    background: var(--sand);
+    border-left: 4px solid #fbc02d;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+    font-style: italic;
+  }
+
+  .script-box::before {
+    content: "🎙️ ";
+    font-style: normal;
+  }
+
+  .warn {
+    background: #ffebee;
+    border-left: 4px solid #e53935;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+  }
+
+  .warn::before {
+    content: "⚠️ ";
+  }
+
+  .tip {
+    background: #e8f5e9;
+    border-left: 4px solid var(--kelp);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+  }
+
+  .tip::before {
+    content: "💡 ";
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+
+  .checklist li {
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .checklist input[type="checkbox"] {
+    margin-top: 0.35rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--ocean);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .rating {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .rating span {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 600;
+    color: var(--muted);
+    user-select: none;
+  }
+
+  .rating span:hover {
+    border-color: var(--wave);
+    color: var(--ocean);
+  }
+
+  .rating span.selected {
+    background: var(--ocean);
+    border-color: var(--ocean);
+    color: white;
+  }
+
+  .form-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    margin: 0.75rem 0;
+  }
+
+  .form-line label {
+    min-width: 140px;
+    font-weight: 600;
+    color: var(--deep);
+  }
+
+  .form-line input[type="text"],
+  .form-line input[type="number"],
+  .form-line input[type="date"],
+  .form-line textarea {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  .form-line textarea {
+    min-height: 70px;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--wave);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+  }
+
+  button {
+    background: var(--ocean);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+
+  button:hover { background: var(--deep); }
+
+  button.secondary {
+    background: var(--muted);
+  }
+
+  button.secondary:hover { background: var(--deep); }
+
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  footer a { color: var(--ocean); text-decoration: none; }
+
+  .tag {
+    display: inline-block;
+    background: var(--foam);
+    color: var(--ocean);
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+
+  @media print {
+    body { background: white; }
+    header { box-shadow: none; }
+    section {
+      box-shadow: none;
+      border: 1px solid var(--border);
+      page-break-inside: avoid;
+    }
+    .actions, footer button { display: none; }
+    .script-box, .warn, .tip { border-left-width: 3px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ZTRATAX OCEAN</h1>
+  <p>Playtest Kit — Laut yang Mengkerut</p>
+  <p style="font-size:0.9rem; margin-top:0.75rem; opacity:0.75;">
+    <span class="tag">2 Pemain</span>
+    <span class="tag">8×8 Kartu</span>
+    <span class="tag">20–30 Menit</span>
+  </p>
+</header>
+
+<main>
+
+  <!-- ======================== SECTION 0 ======================== -->
+  <section id="checklist">
+    <h2>📋 Bagian 0 — Checklist Sebelum Sesi</h2>
+
+    <h3>Komponen yang Harus Disiapkan</h3>
+    <ul class="checklist">
+      <li><input type="checkbox"> 64 kartu tertutup dalam susunan 8×8 (kartu remi atau kertas lipat)</li>
+      <li><input type="checkbox"> 2 bidak kapal (koin, kancing, atau pion)</li>
+      <li><input type="checkbox"> 20 token koin (atau potongan kertas)</li>
+      <li><input type="checkbox"> 12 kartu Konservasi (opsional)</li>
+      <li><input type="checkbox"> Lembar observasi fasilitator</li>
+      <li><input type="checkbox"> Lembar feedback pemain</li>
+      <li><input type="checkbox"> Pena dan catatan</li>
+      <li><input type="checkbox"> Timer atau jam</li>
+    </ul>
+
+    <h3>Komposisi 64 Kartu (8×8)</h3>
+    <table>
+      <thead>
+        <tr><th>Kartu</th><th>Jumlah</th><th>Efek</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🐟 Ikan</td><td>24</td><td>+2 koin</td></tr>
+        <tr><td>🗑️ Sampah</td><td>20</td><td>−1 koin</td></tr>
+        <tr><td>🪸 Karang</td><td>12</td><td>−2 koin, +1 poin konservasi</td></tr>
+        <tr><td>🌊 Kosong</td><td>8</td><td>0 koin</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Atur Meja</h3>
+    <ul>
+      <li>Papan di tengah meja</li>
+      <li>Koin di sisi kiri fasilitator</li>
+      <li>Bidak di sisi kanan</li>
+      <li>Catatan dan pena di dekat fasilitator</li>
+    </ul>
+  </section>
+
+  <!-- ======================== SECTION 1 ======================== -->
+  <section id="pembukaan">
+    <h2>🎬 Bagian 1 — Skrip Pembukaan (2 menit)</h2>
+
+    <div class="script-box">
+      Hari ini kita akan menguji permainan bernama <strong>ZTRATAX OCEAN</strong>. Ini adalah permainan tentang eksplorasi laut yang menyusut. Setiap kartu yang kalian buka akan hilang selamanya. Tujuan kalian: kumpulkan koin sebanyak mungkin <strong>dan</strong> tetap bertahan hidup. Kalau kalian terjebak atau bangkrut, kalian kalah.
+    </div>
+
+    <div class="script-box">
+      Saya akan menjelaskan aturannya, lalu kita langsung main. Setelah selesai, saya akan minta pendapat kalian. Tidak ada jawaban benar atau salah — saya butuh kejujuran kalian.
+    </div>
+  </section>
+
+  <!-- ======================== SECTION 2 ======================== -->
+  <section id="aturan">
+    <h2>📖 Bagian 2 — Skrip Aturan (5 menit)</h2>
+
+    <div class="script-box">
+      Ini papan 8×8. Semua kartu tertutup. Anggap saja ini laut. Kalian berdua mulai <strong>di luar papan</strong> — kamu di sisi utara, kamu di sisi selatan.
+    </div>
+
+    <p>Setiap giliran, kalian memilih <strong>satu</strong> dari dua aksi:</p>
+
+    <h3>Aksi A — Bergerak</h3>
+    <div class="script-box">
+      Pindahkan kapal kalian <strong>satu petak</strong> ke kartu tertutup yang kosong. Boleh horizontal atau vertikal. Tidak boleh diagonal. Tidak boleh masuk ke petak yang sudah dibuka. Tidak boleh berbagi petak dengan pemain lain.
+    </div>
+
+    <h3>Aksi B — Membuka Kartu</h3>
+    <div class="script-box">
+      Jika kalian berada di kartu tertutup <strong>atau</strong> di luar papan, buka satu kartu tertutup yang <strong>bersebelahan</strong> dengan posisi kalian. Terapkan efeknya, lalu <strong>buang kartu itu</strong>. Petak itu menjadi lubang dan tidak bisa dilewati lagi.
+    </div>
+
+    <div class="warn">
+      Penting: kalian <strong>tidak pernah berdiri di atas kartu yang kalian buka</strong>. Kalian membuka dari kejauhan.
+    </div>
+
+    <h3>Efek Kartu</h3>
+    <table>
+      <thead><tr><th>Kartu</th><th>Efek</th></tr></thead>
+      <tbody>
+        <tr><td>🐟 Ikan</td><td>Ambil 2 koin.</td></tr>
+        <tr><td>🗑️ Sampah</td><td>Bayar 1 koin.</td></tr>
+        <tr><td>🪸 Karang</td><td>Bayar 2 koin, dapat 1 poin konservasi (1 poin = 1 koin di akhir).</td></tr>
+        <tr><td>🌊 Kosong</td><td>Tidak ada efek.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kondisi Kalah</h3>
+    <ul>
+      <li>Tidak bisa bergerak sama sekali di awal giliran.</li>
+      <li>Koin mencapai −5.</li>
+      <li>Terhalang pemain lain dan tidak ada jalan lain.</li>
+    </ul>
+
+    <h3>Kondisi Akhir</h3>
+    <ul>
+      <li>Semua kartu habis, <strong>atau</strong></li>
+      <li>Hanya satu pemain tersisa.</li>
+    </ul>
+
+    <p><strong>Pemenang:</strong> pemain dengan koin terbanyak di antara yang masih bertahan.</p>
+
+    <div class="script-box">
+      Ada pertanyaan sebelum kita mulai?
+    </div>
+  </section>
+
+  <!-- ======================== SECTION 3 ======================== -->
+  <section id="selama">
+    <h2>🎮 Bagian 3 — Skrip Selama Permainan</h2>
+
+    <h3>Frasa yang Boleh Diucapkan</h3>
+    <table>
+      <thead><tr><th>Situasi</th><th>Frasa</th></tr></thead>
+      <tbody>
+        <tr><td>Pemain ragu</td><td>"Terserah kamu. Tidak ada jawaban benar."</td></tr>
+        <tr><td>Pemain bertanya aturan</td><td>"Menurutmu bagaimana seharusnya?" lalu putuskan cepat.</td></tr>
+        <tr><td>Pemain kesal</td><td>"Itu wajar. Lanjutkan dulu, nanti kita bahas."</td></tr>
+        <tr><td>Pemain ingin mengubah aturan</td><td>"Catat dulu. Setelah selesai kita coba."</td></tr>
+        <tr><td>Pemain diam</td><td>"Giliranmu."</td></tr>
+        <tr><td>Pemain membuka karang</td><td>"Kamu dapat 1 poin konservasi."</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Frasa yang TIDAK Boleh Diucapkan</h3>
+    <div class="warn">
+      <ul style="margin:0;">
+        <li>"Sebaiknya kamu buka yang itu."</li>
+        <li>"Itu langkah buruk."</li>
+        <li>"Kamu pasti kalah."</li>
+        <li>"Menurut saya aturannya kurang jelas."</li>
+        <li>"Kalau saya jadi kamu..."</li>
+      </ul>
+    </div>
+
+    <h3>Yang Harus Dicatat Fasilitator</h3>
+    <ul>
+      <li>Giliran ke berapa pemain pertama membuka kartu?</li>
+      <li>Apakah ada pemain yang terjebak? Kapan?</li>
+      <li>Apakah ada momen "dilema" yang terlihat jelas?</li>
+      <li>Berapa lama rata-rata satu giliran?</li>
+      <li>Apakah pemain saling memblokir?</li>
+      <li>Apakah ada tawa, helaan napas, atau ekspresi frustrasi?</li>
+    </ul>
+  </section>
+
+  <!-- ======================== SECTION 4 ======================== -->
+  <section id="observasi">
+    <h2>📝 Bagian 4 — Lembar Observasi Fasilitator</h2>
+
+    <div class="grid-2">
+      <div class="form-line"><label>Sesi</label><input type="text" placeholder="mis. 01"></div>
+      <div class="form-line"><label>Tanggal</label><input type="date"></div>
+      <div class="form-line"><label>Pemain A</label><input type="text" placeholder="Nama"></div>
+      <div class="form-line"><label>Pemain B</label><input type="text" placeholder="Nama"></div>
+      <div class="form-line"><label>Durasi (menit)</label><input type="number" placeholder="25"></div>
+    </div>
+
+    <h3>Log Giliran</h3>
+    <table>
+      <thead>
+        <tr><th>Giliran</th><th>Aksi</th><th>Kartu</th><th>Koin A</th><th>Koin B</th><th>Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Pertanyaan Setelah Sesi</h3>
+    <ol>
+      <li>Pemain pertama tereliminasi pada giliran ke-<input type="number" style="width:70px;"> </li>
+      <li>Permainan berakhir karena: <br>
+        <label><input type="radio" name="end"> Semua kartu habis</label><br>
+        <label><input type="radio" name="end"> Eliminasi</label><br>
+        <label><input type="radio" name="end"> Lainnya:</label> <input type="text" style="width:180px;">
+      </li>
+      <li>Total kartu terbuka: <input type="number" style="width:70px;"> dari 64</li>
+      <li>Skor akhir: Pemain A = <input type="number" style="width:70px;"> | Pemain B = <input type="number" style="width:70px;"></li>
+      <li>Apakah ada momen stalemate? <label><input type="radio" name="stale"> Ya</label> <label><input type="radio" name="stale"> Tidak</label></li>
+      <li>Apakah ada aturan yang perlu diulang lebih dari 2 kali? <input type="text" style="width:100%; margin-top:0.5rem;"></li>
+    </ol>
+  </section>
+
+  <!-- ======================== SECTION 5 ======================== -->
+  <section id="feedback">
+    <h2>💬 Bagian 5 — Lembar Feedback Pemain</h2>
+
+    <div class="form-line"><label>Nama (opsional)</label><input type="text"></div>
+
+    <p><strong>1. Apakah aturan mudah dipahami?</strong></p>
+    <div class="rating" data-name="q1">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+
+    <p><strong>2. Apakah keputusan membuka kartu terasa sulit?</strong></p>
+    <div class="rating" data-name="q2">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+
+    <p><strong>3. Apakah kamu merasa punya kendali atas hasil?</strong></p>
+    <div class="rating" data-name="q3">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+
+    <p><strong>4. Apakah permainan terasa terlalu cepat / terlalu lama?</strong></p>
+    <div class="rating" data-name="q4">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+
+    <p><strong>5. Apakah tema laut dan sampah terasa?</strong></p>
+    <div class="rating" data-name="q5">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+
+    <div class="form-line"><label>Momen paling menyenangkan</label><textarea></textarea></div>
+    <div class="form-line"><label>Momen paling membosankan</label><textarea></textarea></div>
+    <div class="form-line"><label>Jika bisa mengubah 1 aturan</label><textarea></textarea></div>
+
+    <p><strong>9. Apakah kamu mau main lagi?</strong></p>
+    <p>
+      <label><input type="radio" name="again"> Ya</label> &nbsp;
+      <label><input type="radio" name="again"> Tidak</label> &nbsp;
+      <label><input type="radio" name="again"> Mungkin</label>
+    </p>
+
+    <div class="form-line"><label>Saran lain</label><textarea></textarea></div>
+  </section>
+
+  <!-- ======================== SECTION 6 ======================== -->
+  <section id="penutup">
+    <h2>🎤 Bagian 6 — Skrip Penutup (3 menit)</h2>
+
+    <div class="script-box">
+      Terima kasih sudah bermain. Sekarang saya mau dengar pendapat kalian. Tidak ada jawaban yang salah.
+    </div>
+
+    <ol>
+      <li>Apa yang paling kamu sukai dari permainan ini?</li>
+      <li>Apa yang paling membingungkan atau mengganggu?</li>
+      <li>Kalau kamu bisa mengubah satu hal, apa itu?</li>
+      <li>Apakah kamu merasa permainan ini adil? Kenapa?</li>
+      <li>Apakah kamu mau main lagi dengan aturan yang sama, atau ada yang perlu diubah dulu?</li>
+    </ol>
+
+    <div class="tip">
+      Catat semua jawaban. Jangan berdebat. Jangan membela desain.
+    </div>
+  </section>
+
+  <!-- ======================== SECTION 7 ======================== -->
+  <section id="analisis">
+    <h2>📊 Bagian 7 — Analisis Setelah 5 Sesi</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metrik</th><th>Sesi 1</th><th>Sesi 2</th><th>Sesi 3</th><th>Sesi 4</th><th>Sesi 5</th><th>Rata-rata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Durasi (menit)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Giliran eliminasi pertama</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Kartu terbuka</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Skor tertinggi</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Skor terendah</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Rating kepuasan (1–5)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Keputusan Setelah 5 Sesi</h3>
+    <ul>
+      <li>Jika eliminasi terlalu cepat (&lt; 10 giliran): tambah ikan, kurangi karang.</li>
+      <li>Jika permainan terlalu lama (&gt; 40 menit): kecilkan papan jadi 6×6.</li>
+      <li>Jika pemain bingung: sederhanakan efek kartu.</li>
+      <li>Jika pemain bosan: tambahkan satu kartu kemampuan khusus.</li>
+    </ul>
+  </section>
+
+  <!-- ======================== SECTION 8 ======================== -->
+  <section id="catatan">
+    <h2>📌 Bagian 8 — Catatan Fasilitator</h2>
+
+    <div class="warn">
+      <strong>Hal yang harus dihindari:</strong>
+      <ul style="margin:0.5rem 0 0;">
+        <li>Jangan menjelaskan strategi.</li>
+        <li>Jangan mengoreksi langkah pemain.</li>
+        <li>Jangan menambah aturan di tengah permainan.</li>
+        <li>Jangan memihak salah satu pemain.</li>
+        <li>Jangan lupa mencatat waktu.</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <strong>Hal yang harus dilakukan:</strong>
+      <ul style="margin:0.5rem 0 0;">
+        <li>Biarkan pemain membuat kesalahan.</li>
+        <li>Catat semua pertanyaan yang muncul.</li>
+        <li>Perhatikan ekspresi wajah dan bahasa tubuh.</li>
+        <li>Tanyakan "kenapa" setelah permainan, bukan saat bermain.</li>
+        <li>Ucapkan terima kasih di akhir.</li>
+      </ul>
+    </div>
+
+    <h3>Lampiran — Kartu Konservasi (Opsional)</h3>
+    <p>
+      Cetak 12 kartu kecil bertuliskan <strong>"Konservasi"</strong>. Setiap kali pemain membuka karang, ia mengambil 1 kartu ini. Di akhir permainan, setiap kartu Konservasi = 1 koin.
+    </p>
+    <p>Ini memberi insentif untuk "membersihkan" karang, bukan menghindarinya.</p>
+  </section>
+
+  <!-- ======================== ACTIONS ======================== -->
+  <div class="actions">
+    <button onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+    <button class="secondary" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️ Ke Atas</button>
+  </div>
+
+</main>
+
+<footer>
+  <p>ZTRATAX OCEAN — Playtest Kit v1.0</p>
+  <p>Dibuat untuk eksperimen desain game. Bebas dimodifikasi.</p>
+</footer>
+
+<script>
+  // Rating selector
+  document.querySelectorAll('.rating').forEach(function (group) {
+    group.querySelectorAll('span').forEach(function (star) {
+      star.addEventListener('click', function () {
+        group.querySelectorAll('span').forEach(function (s) {
+          s.classList.remove('selected');
+        });
+        star.classList.add('selected');
+      });
+    });
+  });
+
+  // Auto-save form fields to localStorage
+  document.querySelectorAll('input, textarea').forEach(function (el, i) {
+    var key = 'ztrax_field_' + i;
+    if (el.type !== 'radio' && el.type !== 'checkbox') {
+      var saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener('input', function () {
+        localStorage.setItem(key, el.value);
+      });
+    }
+  });
+
+  // Restore radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(function (el, i) {
+    var key = 'ztrax_radio_' + i;
+    if (localStorage.getItem(key) === 'checked') el.checked = true;
+    el.addEventListener('change', function () {
+      if (el.checked) localStorage.setItem(key, 'checked');
+    });
+  });
+</script>
+
+</body>
+</html>
