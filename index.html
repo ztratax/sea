@@ -10,430 +10,350 @@
     --ocean: #1565c0;
     --wave: #2196f3;
     --foam: #e3f2fd;
-    --sand: #fff8e1;
-    --coral: #ff7043;
-    --kelp: #2e7d32;
-    --ink: #1a1a1a;
-    --muted: #607d8b;
-    --border: #cfd8dc;
     --card-bg: #1e88e5;
     --card-back: #0d47a1;
     --card-hover: #42a5f5;
+    --muted: #607d8b;
+    --kelp: #2e7d32;
   }
-
   * { box-sizing: border-box; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    color: var(--ink);
-    background: linear-gradient(180deg, #f5f9fc 0%, #e8f1f8 100%);
-    margin: 0;
-    padding: 0;
+    background: radial-gradient(ellipse at top, #1e5799 0%, #0a2540 100%);
     min-height: 100vh;
+    margin: 0;
+    color: #1a1a1a;
+    padding: 1rem;
   }
-
   header {
-    background: linear-gradient(135deg, var(--deep), var(--ocean));
-    color: white;
-    padding: 1.5rem 1rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.3);
+    color: white;
+    padding: 0.5rem 0 1rem;
   }
-
   header h1 {
     margin: 0;
     font-size: clamp(1.4rem, 4vw, 2rem);
     letter-spacing: 0.08em;
+    text-shadow: 0 2px 12px rgba(33, 150, 243, 0.5);
   }
-
   header p {
     margin: 0.25rem 0 0;
     opacity: 0.85;
     font-size: 0.9rem;
   }
 
-  .game-container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
+  .game-container { max-width: 720px; margin: 0 auto; }
 
-  /* === STATUS BAR === */
+  /* SETUP */
+  .setup-screen {
+    background: rgba(255,255,255,0.95);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    margin-bottom: 1rem;
+  }
+  .setup-screen h2 {
+    color: var(--deep);
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+  .setup-screen h3 {
+    color: var(--ocean);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 1.25rem 0 0.75rem;
+  }
+  .setup-options {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .setup-options button {
+    background: linear-gradient(135deg, var(--ocean), var(--card-back));
+    color: white;
+    border: none;
+    padding: 0.9rem 1.4rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    min-width: 110px;
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+  }
+  .setup-options button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.45);
+  }
+  .setup-options button small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.7rem;
+    opacity: 0.85;
+    margin-top: 0.2rem;
+  }
+  .setup-options button.ai-easy { background: linear-gradient(135deg, #43a047, #2e7d32); }
+  .setup-options button.ai-medium { background: linear-gradient(135deg, #fb8c00, #e65100); }
+  .setup-options button.ai-hard { background: linear-gradient(135deg, #e53935, #b71c1c); }
+
+  /* GAME SCREEN */
   .status-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
+    background: rgba(255,255,255,0.95);
     border-radius: 10px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.75rem;
-    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
-
   .player-info {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.75rem;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 8px;
-    transition: all 0.2s;
+    transition: all 0.25s;
     border: 2px solid transparent;
   }
-
   .player-info.active {
     border-color: var(--wave);
     background: var(--foam);
-    box-shadow: 0 0 12px rgba(33, 150, 243, 0.25);
+    box-shadow: 0 0 12px rgba(33, 150, 243, 0.4);
+    transform: scale(1.03);
   }
-
-  .player-info.eliminated {
-    opacity: 0.4;
-    text-decoration: line-through;
-  }
-
+  .player-info.eliminated { opacity: 0.35; filter: grayscale(1); }
   .player-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
+    width: 16px; height: 16px; border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     flex-shrink: 0;
   }
-
-  .player-name {
-    font-weight: 700;
-    font-size: 0.85rem;
-  }
-
-  .player-coins {
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-weight: 600;
-  }
+  .player-name { font-weight: 700; font-size: 0.8rem; }
+  .player-coins { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
 
   .turn-indicator {
+    width: 100%;
+    text-align: center;
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--ocean);
-    text-align: center;
-    width: 100%;
-    margin-top: 0.25rem;
+    margin-top: 0.3rem;
+  }
+  .mp-badge {
+    display: inline-block;
+    background: var(--wave);
+    color: white;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-left: 0.4rem;
   }
 
-  /* === BOARD === */
+  /* MESSAGE */
+  .message {
+    text-align: center;
+    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    transition: all 0.3s;
+  }
+  .message.info { background: rgba(227, 242, 253, 0.95); color: var(--ocean); }
+  .message.win  { background: rgba(232, 245, 233, 0.95); color: var(--kelp); font-size: 1.05rem; }
+  .message.lose { background: rgba(255, 235, 238, 0.95); color: #c62828; }
+  .message.think { background: rgba(255, 248, 225, 0.95); color: #e65100; }
+
+  /* BOARD */
   .board-wrapper {
     position: relative;
     background: linear-gradient(145deg, #0d47a1, #1565c0, #1976d2);
     border-radius: 14px;
     padding: 10px;
-    box-shadow: 0 6px 24px rgba(10, 37, 64, 0.3), inset 0 2px 8px rgba(255,255,255,0.15);
-    margin-bottom: 0.75rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 2px 8px rgba(255,255,255,0.15);
+    margin-bottom: 0.6rem;
+    overflow: hidden;
   }
-
+  .board-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 40%);
+    pointer-events: none;
+  }
   .board {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 4px;
     aspect-ratio: 1;
+    position: relative;
   }
 
   .cell {
     position: relative;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: box-shadow 0.2s;
     perspective: 600px;
-    min-width: 0;
-    min-height: 0;
+    min-width: 0; min-height: 0;
   }
-
   .cell .card-inner {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     border-radius: 6px;
   }
-
-  .cell.revealed .card-inner {
-    transform: rotateY(180deg);
-  }
+  .cell.revealed .card-inner { transform: rotateY(180deg); }
 
   .card-face {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     backface-visibility: hidden;
     border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
     font-weight: 700;
     user-select: none;
   }
-
   .card-front {
     background: linear-gradient(135deg, var(--card-bg), var(--card-back));
     border: 2px solid rgba(255,255,255,0.2);
-    box-shadow: inset 0 1px 4px rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.5);
-    font-size: 0.7rem;
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.25);
   }
-
   .card-front::after {
     content: "🌊";
-    font-size: clamp(0.8rem, 2vw, 1.3rem);
+    font-size: clamp(0.7rem, 1.8vw, 1.1rem);
     opacity: 0.4;
   }
-
-  .card-back {
-    transform: rotateY(180deg);
-    border: 2px solid rgba(0,0,0,0.08);
-  }
-
-  .card-back.fish {
-    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-    color: #00695c;
-  }
-
-  .card-back.trash {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    color: #bf360c;
-  }
-
-  .card-back.coral {
-    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-    color: #c62828;
-  }
-
-  .card-back.empty {
-    background: linear-gradient(135deg, #eceff1, #cfd8dc);
-    color: #546e7a;
-  }
+  .card-back { transform: rotateY(180deg); border: 2px solid rgba(0,0,0,0.08); }
+  .card-back.fish  { background: linear-gradient(135deg, #e0f7fa, #b2ebf2); color: #00695c; }
+  .card-back.trash { background: linear-gradient(135deg, #fff3e0, #ffe0b2); color: #bf360c; }
+  .card-back.coral { background: linear-gradient(135deg, #fce4ec, #f8bbd0); color: #c62828; }
+  .card-back.empty { background: linear-gradient(135deg, #eceff1, #cfd8dc); color: #546e7a; }
 
   .cell.hole {
-    background: rgba(10, 37, 64, 0.5);
-    border-radius: 6px;
-    cursor: default;
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+    background: rgba(5, 20, 40, 0.7);
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.5);
+    cursor: pointer;
   }
+  .cell.hole .card-inner { opacity: 0; }
 
-  .cell.hole .card-front,
-  .cell.hole .card-back {
-    opacity: 0;
+  .cell.clickable .card-front {
+    box-shadow: inset 0 1px 4px rgba(255,255,255,0.25), 0 0 0 2px #ffeb3b, 0 0 12px rgba(255,235,59,0.5);
+    animation: pulse 1.6s ease-in-out infinite;
   }
-
-  .cell.highlight {
-    box-shadow: 0 0 0 3px #ffeb3b, 0 0 16px rgba(255, 235, 59, 0.5);
-    z-index: 2;
-  }
-
   .cell.clickable:hover .card-front {
-    background: linear-gradient(135deg, var(--card-hover), #1e88e5);
+    background: linear-gradient(135deg, var(--card-hover), var(--card-bg));
     transform: scale(1.05);
   }
+  @keyframes pulse {
+    0%, 100% { box-shadow: inset 0 1px 4px rgba(255,255,255,0.25), 0 0 0 2px #ffeb3b, 0 0 12px rgba(255,235,59,0.5); }
+    50%      { box-shadow: inset 0 1px 4px rgba(255,255,255,0.25), 0 0 0 2px #ffeb3b, 0 0 20px rgba(255,235,59,0.8); }
+  }
 
-  /* === SHIPS (PLAYER PIECES) === */
+  /* SHIPS */
   .ship {
     position: absolute;
-    width: 70%;
-    height: 70%;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
+    width: 78%; height: 78%;
     transform: translate(-50%, -50%);
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
     font-size: clamp(0.6rem, 1.8vw, 1rem);
     font-weight: 900;
     color: white;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-    transition: all 0.3s ease;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    border: 2px solid rgba(255,255,255,0.9);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5), inset 0 -3px 6px rgba(0,0,0,0.2);
+    z-index: 10;
     pointer-events: none;
+    will-change: transform;
+  }
+  .ship::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 50%;
+    transform: translateX(-50%);
+    width: 60%; height: 4px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.6), transparent 70%);
+    border-radius: 50%;
+  }
+  .ship.p0 { background: linear-gradient(135deg, #ff5252, #b71c1c); }
+  .ship.p1 { background: linear-gradient(135deg, #42a5f5, #0d47a1); }
+  .ship.p2 { background: linear-gradient(135deg, #66bb6a, #1b5e20); }
+  .ship.p3 { background: linear-gradient(135deg, #ffa726, #e65100); }
+
+  .ship.sailing { animation: sail 1.4s ease-in-out infinite; }
+  @keyframes sail {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-4deg); }
+    50%      { transform: translate(-50%, -50%) rotate(4deg); }
   }
 
-  .ship.p0 { background: #e53935; }
-  .ship.p1 { background: #1e88e5; }
-  .ship.p2 { background: #43a047; }
-  .ship.p3 { background: #fb8c00; }
-
-  .ship.outside {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 28px;
-    height: 28px;
-    display: inline-flex;
-    font-size: 0.7rem;
-  }
-
-  /* === ACTIONS === */
+  /* ACTIONS */
   .actions-bar {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+    display: flex; gap: 0.5rem; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 0.6rem;
   }
-
   .actions-bar button {
-    background: var(--ocean);
-    color: white;
-    border: none;
-    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--wave), var(--ocean));
+    color: white; border: none;
+    padding: 0.65rem 1.2rem;
     border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.85rem; font-weight: 700;
     cursor: pointer;
     transition: all 0.15s;
     font-family: inherit;
-    box-shadow: 0 2px 6px rgba(21, 101, 192, 0.3);
+    box-shadow: 0 3px 10px rgba(33, 150, 243, 0.35);
   }
-
   .actions-bar button:hover:not(:disabled) {
-    background: var(--deep);
-    transform: translateY(-1px);
-  }
-
-  .actions-bar button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .actions-bar button.secondary {
-    background: var(--muted);
-  }
-
-  .actions-bar button.secondary:hover:not(:disabled) {
-    background: var(--deep);
-  }
-
-  /* === LOG === */
-  .log {
-    background: white;
-    border-radius: 10px;
-    padding: 0.75rem;
-    max-height: 140px;
-    overflow-y: auto;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.08);
-    border-left: 4px solid var(--wave);
-    margin-bottom: 0.75rem;
-  }
-
-  .log p {
-    margin: 0.15rem 0;
-    color: var(--muted);
-  }
-
-  .log .highlight {
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  /* === MESSAGE === */
-  .message {
-    text-align: center;
-    padding: 0.75rem;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    transition: all 0.3s;
-  }
-
-  .message.info {
-    background: var(--foam);
-    color: var(--ocean);
-  }
-
-  .message.win {
-    background: #e8f5e9;
-    color: var(--kelp);
-    font-size: 1.15rem;
-  }
-
-  .message.lose {
-    background: #ffebee;
-    color: #c62828;
-  }
-
-  /* === SETUP SCREEN === */
-  .setup-screen {
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-
-  .setup-screen h2 {
-    color: var(--deep);
-    margin-bottom: 0.5rem;
-  }
-
-  .setup-screen p {
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .setup-options {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .setup-options button {
-    background: white;
-    color: var(--ocean);
-    border: 2px solid var(--wave);
-    padding: 1rem 1.75rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-  }
-
-  .setup-options button:hover {
-    background: var(--foam);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.5);
+  }
+  .actions-bar button:disabled {
+    opacity: 0.4; cursor: not-allowed; transform: none;
+  }
+  .actions-bar button.secondary {
+    background: linear-gradient(135deg, #78909c, #455a64);
   }
 
-  .setup-options button small {
-    display: block;
-    font-weight: 400;
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.25rem;
+  /* LOG */
+  .log {
+    background: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    max-height: 130px;
+    overflow-y: auto;
+    font-size: 0.78rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border-left: 4px solid var(--wave);
+    margin-bottom: 0.6rem;
   }
+  .log p { margin: 0.15rem 0; color: var(--muted); }
+  .log .hl { color: var(--deep); font-weight: 700; }
+  .log .good { color: var(--kelp); font-weight: 700; }
+  .log .bad { color: #c62828; font-weight: 700; }
 
   .hidden { display: none !important; }
 
   footer {
     text-align: center;
-    padding: 1.5rem 1rem;
-    color: var(--muted);
-    font-size: 0.8rem;
+    padding: 1rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.78rem;
   }
-
   @media (max-width: 500px) {
-    .game-container { padding: 0.5rem; }
-    .status-bar { padding: 0.5rem; }
-    .player-name { font-size: 0.75rem; }
+    body { padding: 0.5rem; }
     .board { gap: 3px; }
     .board-wrapper { padding: 6px; }
+    .player-name { font-size: 0.7rem; }
   }
 </style>
 </head>
@@ -446,61 +366,46 @@
 
 <div class="game-container">
 
-  <!-- SETUP SCREEN -->
+  <!-- SETUP -->
   <div id="setupScreen" class="setup-screen">
-    <h2>Pilih Jumlah Pemain</h2>
-    <p>Setiap pemain mulai dari sisi yang berbeda. Kumpulkan koin sebanyak mungkin sebelum laut habis.</p>
+    <h2>Pilih Mode Permainan</h2>
+
+    <h3>👥 Pemain vs Pemain</h3>
     <div class="setup-options">
-      <button onclick="startGame(2)">
-        2 Pemain
-        <small>Utara vs Selatan</small>
-      </button>
-      <button onclick="startGame(3)">
-        3 Pemain
-        <small>Utara, Selatan, Barat</small>
-      </button>
-      <button onclick="startGame(4)">
-        4 Pemain
-        <small>Semua sisi</small>
-      </button>
+      <button onclick="startGame('pvp', 2)">2 Pemain<small>1 vs 1</small></button>
+      <button onclick="startGame('pvp', 3)">3 Pemain<small>Free for all</small></button>
+      <button onclick="startGame('pvp', 4)">4 Pemain<small>Free for all</small></button>
+    </div>
+
+    <h3>🤖 Pemain vs AI</h3>
+    <div class="setup-options">
+      <button class="ai-easy" onclick="startGame('pve', 2, 'easy')">AI Mudah<small>Acak</small></button>
+      <button class="ai-medium" onclick="startGame('pve', 2, 'medium')">AI Sedang<small>Serakah 1 langkah</small></button>
+      <button class="ai-hard" onclick="startGame('pve', 2, 'hard')">AI Sulit<small>Lihat 2 langkah</small></button>
     </div>
   </div>
 
-  <!-- GAME SCREEN -->
+  <!-- GAME -->
   <div id="gameScreen" class="hidden">
-
-    <div class="status-bar" id="statusBar">
-      <!-- Filled by JS -->
-    </div>
-
-    <div class="message info" id="messageBar">Pilih aksi: Bergerak atau Buka Kartu</div>
-
+    <div class="status-bar" id="statusBar"></div>
+    <div class="message info" id="messageBar">—</div>
     <div class="board-wrapper">
       <div class="board" id="board"></div>
     </div>
-
-    <div class="actions-bar" id="actionsBar">
-      <!-- Filled by JS -->
-    </div>
-
-    <div class="log" id="log">
-      <p>Permainan dimulai.</p>
-    </div>
-
+    <div class="actions-bar" id="actionsBar"></div>
+    <div class="log" id="log"></div>
     <div style="text-align:center;">
-      <button class="secondary" onclick="resetGame()" style="background:var(--muted);color:white;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;font-family:inherit;">🔄 Main Lagi</button>
+      <button class="secondary" onclick="resetGame()" style="background:#455a64;color:white;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600;">🔄 Menu Utama</button>
     </div>
   </div>
 
 </div>
 
-<footer>
-  ZTRATAX OCEAN — Playtest v1.0 · Dibuat untuk eksperimen desain game
-</footer>
+<footer>ZTRATAX OCEAN — Playtest v2.0</footer>
 
 <script>
 // ============================================================
-// GAME STATE
+// KONSTANTA
 // ============================================================
 const BOARD_SIZE = 8;
 const CARD_TYPES = {
@@ -509,54 +414,81 @@ const CARD_TYPES = {
   coral: { count: 12, label: '🪸', name: 'Karang', effect: -2, conservation: 1 },
   empty: { count: 8,  label: '🌊', name: 'Kosong', effect: 0 }
 };
-
 const PLAYER_COLORS = ['#e53935', '#1e88e5', '#43a047', '#fb8c00'];
-const PLAYER_NAMES = ['Merah', 'Biru', 'Hijau', 'Oranye'];
 const START_SIDES = [
   { row: -1, col: 4, label: 'Utara' },
   { row: 8,  col: 3, label: 'Selatan' },
   { row: 4,  col: -1, label: 'Barat' },
-  { row: 3,  col: 8, label: 'Timur' }
+  { row: 3,  col: 8,  label: 'Timur' }
 ];
+const MAX_MP = 5;
 
-let state = {};
+// ============================================================
+// STATE
+// ============================================================
+let state = null;
 
+// ============================================================
+// HELPERS
+// ============================================================
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const isOutside = (r, c) => r < 0 || r >= BOARD_SIZE || c < 0 || c >= BOARD_SIZE;
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function log(html) {
+  const logEl = document.getElementById('log');
+  if (!logEl) return;
+  const p = document.createElement('p');
+  p.innerHTML = html;
+  logEl.appendChild(p);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function setMessage(text, type = 'info') {
+  const el = document.getElementById('messageBar');
+  if (el) { el.textContent = text; el.className = 'message ' + type; }
+}
+
+// ============================================================
+// GAME SETUP
+// ============================================================
 function createDeck() {
   const deck = [];
   for (const [type, cfg] of Object.entries(CARD_TYPES)) {
     for (let i = 0; i < cfg.count; i++) deck.push(type);
   }
-  // Fisher-Yates shuffle
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
-  return deck;
+  return shuffle(deck);
 }
 
-function initGame(numPlayers) {
+function initGame(mode, numPlayers, aiDifficulty) {
   const deck = createDeck();
   const board = [];
   for (let r = 0; r < BOARD_SIZE; r++) {
     board[r] = [];
     for (let c = 0; c < BOARD_SIZE; c++) {
-      board[r][c] = { card: deck.pop(), revealed: false, hole: false };
+      board[r][c] = { card: deck.pop(), revealed: false };
     }
   }
 
   state = {
-    board,
-    numPlayers,
+    board, mode, numPlayers, aiDifficulty,
     players: [],
     currentPlayer: 0,
     gameOver: false,
     revealedCount: 0,
-    log: [],
-    turnPhase: 'move', // 'move' or 'reveal'
-    selectedCell: null
+    mp: 0,
+    aiBusy: false
   };
 
   for (let i = 0; i < numPlayers; i++) {
+    const isAI = (mode === 'pve' && i === 1);
     state.players.push({
       id: i,
       row: START_SIDES[i].row,
@@ -564,240 +496,321 @@ function initGame(numPlayers) {
       coins: 5,
       conservation: 0,
       eliminated: false,
-      name: PLAYER_NAMES[i],
+      isAI,
+      name: isAI ? 'AI (' + ({easy:'Mudah',medium:'Sedang',hard:'Sulit'}[aiDifficulty]) + ')' : 'Pemain ' + (i + 1),
       color: PLAYER_COLORS[i]
     });
   }
 
-  log('Permainan dimulai dengan ' + numPlayers + ' pemain.');
-  log('Pemain 1 (' + PLAYER_NAMES[0] + ') mulai dari sisi ' + START_SIDES[0].label + '.');
-  render();
-}
+  document.getElementById('log').innerHTML = '';
+  log('Permainan dimulai. Mode: <span class="hl">' + mode.toUpperCase() + '</span>');
+  log('<span class="hl">' + state.players[0].name + '</span> mulai dari sisi ' + START_SIDES[0].label + '.');
+  if (mode === 'pve') log('<span class="hl">' + state.players[1].name + '</span> mulai dari sisi ' + START_SIDES[1].label + '.');
 
-function log(msg) {
-  state.log.push(msg);
-  const logEl = document.getElementById('log');
-  if (logEl) {
-    const p = document.createElement('p');
-    p.innerHTML = msg;
-    logEl.appendChild(p);
-    logEl.scrollTop = logEl.scrollHeight;
-  }
+  state.currentPlayer = 0;
+  startTurn();
 }
 
 // ============================================================
-// POSITION HELPERS
+// TURN MANAGEMENT
 // ============================================================
-function isOutside(row, col) {
-  return row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE;
-}
-
-function getNeighbors(row, col) {
-  const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
-  const result = [];
-  for (const [dr, dc] of dirs) {
-    const nr = row + dr, nc = col + dc;
-    if (!isOutside(nr, nc)) result.push({ row: nr, col: nc });
-  }
-  return result;
-}
-
-function canMoveTo(row, col) {
-  if (isOutside(row, col)) return false;
-  const cell = state.board[row][col];
-  if (cell.hole || cell.revealed) return false;
-  // Check if another player is there
-  for (const p of state.players) {
-    if (!p.eliminated && p.row === row && p.col === col) return false;
-  }
-  return true;
-}
-
-function canRevealFrom(row, col) {
-  if (isOutside(row, col)) {
-    // From outside, can reveal any edge cell that is still hidden
-    return true;
-  }
-  return true; // Can always attempt to reveal a neighbor
-}
-
-// ============================================================
-// PLAYER ACTIONS
-// ============================================================
-function selectMoveTarget(row, col) {
+function startTurn() {
   if (state.gameOver) return;
   const p = state.players[state.currentPlayer];
+
   if (p.eliminated) { nextPlayer(); return; }
 
-  // Only allow moving to adjacent cells
-  const dr = Math.abs(row - p.row);
-  const dc = Math.abs(col - p.col);
-  if (dr + dc !== 1 && !(isOutside(p.row, p.col) && isOutside(row, col))) {
-    // If outside, allow moving to any edge cell
-    if (isOutside(p.row, p.col)) {
-      if (isOutside(row, col)) return;
-    } else {
-      return;
-    }
-  }
+  // Movement Points = jumlah koin, minimal 1, maksimal MAX_MP
+  state.mp = Math.max(1, Math.min(p.coins, MAX_MP));
 
-  if (!canMoveTo(row, col)) {
-    setMessage('Tidak bisa bergerak ke sana.', 'lose');
-    return;
-  }
+  log('<span class="hl">' + p.name + '</span> mulai giliran. MP: ' + state.mp);
 
-  p.row = row;
-  p.col = col;
-  log('<span class="highlight">' + p.name + '</span> bergerak ke (' + (row+1) + ',' + (col+1) + ').');
-
-  // Auto-reveal if on a hidden card
-  const cell = state.board[row][col];
-  if (!cell.revealed && !cell.hole) {
-    revealCard(row, col);
-  } else {
-    nextPlayer();
-  }
   render();
-}
+  setMessage(p.name + ', giliranmu. MP: ' + state.mp + '. Klik petak untuk bergerak.', 'info');
 
-function revealCard(row, col) {
-  const cell = state.board[row][col];
-  if (cell.revealed || cell.hole) return;
-
-  const p = state.players[state.currentPlayer];
-  const type = cell.card;
-  const cfg = CARD_TYPES[type];
-
-  cell.revealed = true;
-  cell.hole = true; // Mandatory discard
-  state.revealedCount++;
-
-  // Apply effect
-  p.coins += cfg.effect;
-  if (cfg.conservation) p.conservation += cfg.conservation;
-
-  const coinStr = cfg.effect >= 0 ? '+' + cfg.effect : cfg.effect;
-  log('<span class="highlight">' + p.name + '</span> membuka ' + cfg.label + ' ' + cfg.name +
-      ' (' + coinStr + ' koin). Koin: ' + p.coins);
-
-  // Check bankruptcy
-  if (p.coins <= -5) {
-    p.eliminated = true;
-    log('💀 <span class="highlight">' + p.name + '</span> bangkrut dan tereliminasi!');
-  }
-
-  // Check if trapped
-  checkTrapped(p);
-
-  // Check game over
-  checkGameOver();
-
-  if (!state.gameOver) nextPlayer();
-  render();
-}
-
-function checkTrapped(p) {
-  if (p.eliminated) return;
-  // Check if player can move anywhere
-  let canMove = false;
-
-  if (isOutside(p.row, p.col)) {
-    // From outside, can move to any edge cell that is not a hole
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        if ((r === 0 || r === BOARD_SIZE-1 || c === 0 || c === BOARD_SIZE-1) && canMoveTo(r, c)) {
-          canMove = true;
-        }
-      }
-    }
-  } else {
-    const neighbors = getNeighbors(p.row, p.col);
-    for (const n of neighbors) {
-      if (canMoveTo(n.row, n.col)) { canMove = true; break; }
-    }
-  }
-
-  if (!canMove) {
-    p.eliminated = true;
-    log('💀 <span class="highlight">' + p.name + '</span> terjebak dan tereliminasi!');
-  }
-}
-
-function checkGameOver() {
-  const alive = state.players.filter(p => !p.eliminated);
-  if (alive.length <= 1 || state.revealedCount >= 64) {
-    state.gameOver = true;
-    let winner = null;
-    if (alive.length === 1) {
-      winner = alive[0];
-    } else if (alive.length > 1) {
-      winner = alive.reduce((a, b) => a.coins >= b.coins ? a : b);
-    }
-    render();
+  if (p.isAI) {
+    state.aiBusy = true;
+    setTimeout(runAITurn, 900);
   }
 }
 
 function nextPlayer() {
   if (state.gameOver) return;
-  const alive = state.players.filter(p => !p.eliminated);
-  if (alive.length <= 1) { checkGameOver(); return; }
-
   let attempts = 0;
   do {
     state.currentPlayer = (state.currentPlayer + 1) % state.numPlayers;
     attempts++;
-    if (attempts > state.numPlayers * 2) break;
-  } while (state.players[state.currentPlayer].eliminated);
+  } while (state.players[state.currentPlayer].eliminated && attempts < state.numPlayers + 1);
 
-  // Check trapped at start of turn
-  const p = state.players[state.currentPlayer];
-  if (!p.eliminated) checkTrapped(p);
-  if (p.eliminated) { nextPlayer(); return; }
-
-  state.turnPhase = 'move';
-  setMessage(p.name + ', giliranmu. Pilih aksi.', 'info');
+  if (state.players.filter(p => !p.eliminated).length <= 1) {
+    checkGameOver();
+    return;
+  }
+  startTurn();
 }
 
-function setMessage(text, type) {
-  const el = document.getElementById('messageBar');
-  el.textContent = text;
-  el.className = 'message ' + type;
+function endTurn() {
+  if (state.gameOver) return;
+  state.mp = 0;
+  state.aiBusy = false;
+  nextPlayer();
 }
 
 // ============================================================
-// RENDERING
+// ACTIONS
+// ============================================================
+function getValidMoves(player) {
+  const moves = [];
+  if (isOutside(player.row, player.col)) {
+    // Entry from outside: can move to any edge hidden cell that is not occupied
+    for (let c = 0; c < BOARD_SIZE; c++) {
+      if (canMoveTo(0, c, player)) moves.push({ row: 0, col: c });
+      if (canMoveTo(BOARD_SIZE - 1, c, player)) moves.push({ row: BOARD_SIZE - 1, col: c });
+    }
+    for (let r = 0; r < BOARD_SIZE; r++) {
+      if (canMoveTo(r, 0, player)) moves.push({ row: r, col: 0 });
+      if (canMoveTo(r, BOARD_SIZE - 1, player)) moves.push({ row: r, col: BOARD_SIZE - 1 });
+    }
+  } else {
+    const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
+    for (const [dr, dc] of dirs) {
+      const nr = player.row + dr, nc = player.col + dc;
+      if (canMoveTo(nr, nc, player)) moves.push({ row: nr, col: nc });
+    }
+  }
+  return moves;
+}
+
+function canMoveTo(r, c, player) {
+  if (isOutside(r, c)) return false;
+  // Cannot enter a cell occupied by another player
+  for (const p of state.players) {
+    if (!p.eliminated && p.id !== player.id && p.row === r && p.col === c) return false;
+  }
+  return true;
+}
+
+function movePlayer(player, row, col) {
+  if (state.mp <= 0) return false;
+
+  player.row = row;
+  player.col = col;
+  state.mp--;
+
+  const cell = state.board[row][col];
+  if (!cell.revealed) {
+    // Auto-reveal
+    cell.revealed = true;
+    state.revealedCount++;
+    const type = cell.card;
+    const cfg = CARD_TYPES[type];
+    player.coins += cfg.effect;
+    if (cfg.conservation) player.conservation += cfg.conservation;
+
+    const coinStr = cfg.effect > 0 ? '+' + cfg.effect : (cfg.effect < 0 ? '' + cfg.effect : '0');
+    const cls = cfg.effect > 0 ? 'good' : (cfg.effect < 0 ? 'bad' : '');
+    log('<span class="hl">' + player.name + '</span> membuka ' + cfg.label + ' ' + cfg.name +
+        ' (<span class="' + cls + '">' + coinStr + '</span>). Koin: ' + player.coins);
+
+    if (player.coins <= -5) {
+      player.eliminated = true;
+      log('<span class="bad">💀 ' + player.name + ' bangkrut!</span>');
+    }
+  }
+
+  checkGameOver();
+  return true;
+}
+
+// ============================================================
+// HUMAN INTERACTION
+// ============================================================
+function onCellClick(row, col) {
+  if (state.gameOver || state.aiBusy) return;
+  const p = state.players[state.currentPlayer];
+  if (p.isAI || p.eliminated) return;
+  if (state.mp <= 0) { endTurn(); return; }
+
+  const valid = getValidMoves(p).some(m => m.row === row && m.col === col);
+  if (!valid) {
+    setMessage('Tidak bisa bergerak ke sana.', 'lose');
+    return;
+  }
+
+  movePlayer(p, row, col);
+  render();
+
+  if (state.gameOver) return;
+  if (p.eliminated) { setTimeout(endTurn, 600); return; }
+
+  if (state.mp <= 0) {
+    setMessage(p.name + ' kehabisan MP. Giliran berakhir.', 'info');
+    setTimeout(endTurn, 500);
+  } else {
+    setMessage(p.name + ', MP tersisa: ' + state.mp + '. Klik petak berikutnya atau akhiri giliran.', 'info');
+  }
+}
+
+// ============================================================
+// AI
+// ============================================================
+async function runAITurn() {
+  if (state.gameOver) return;
+  const ai = state.players[state.currentPlayer];
+  if (!ai.isAI || ai.eliminated) { state.aiBusy = false; return; }
+
+  setMessage('🤖 ' + ai.name + ' sedang berpikir...', 'think');
+
+  while (state.mp > 0 && !state.gameOver && !ai.eliminated) {
+    await sleep(550);
+    const move = aiChooseMove(ai);
+    if (!move) break;
+    const ok = movePlayer(ai, move.row, move.col);
+    render();
+    if (!ok) break;
+    if (state.gameOver) break;
+    if (ai.eliminated) break;
+  }
+
+  state.aiBusy = false;
+  if (state.gameOver) return;
+  await sleep(400);
+  endTurn();
+}
+
+function aiChooseMove(ai) {
+  const moves = getValidMoves(ai);
+  if (moves.length === 0) return null;
+
+  const diff = state.aiDifficulty;
+
+  // EASY: 60% random, 40% prefer fish
+  if (diff === 'easy') {
+    if (Math.random() < 0.6) {
+      return moves[Math.floor(Math.random() * moves.length)];
+    }
+    return pickBestMove(moves, ai, 1, 0.6);
+  }
+
+  // MEDIUM: 1-step greedy
+  if (diff === 'medium') {
+    return pickBestMove(moves, ai, 1, 0.9);
+  }
+
+  // HARD: 2-step lookahead with risk awareness
+  return pickBestMove(moves, ai, 2, 1.0);
+}
+
+function scoreMove(row, col, ai, depth) {
+  const cell = state.board[row][col];
+  if (cell.revealed) return 0; // moving onto a hole has neutral score
+  const type = cell.card;
+  const cfg = CARD_TYPES[type];
+  let score = cfg.effect;
+
+  // Extra weight: fish is great, coral is dangerous
+  if (type === 'fish') score += 2;
+  if (type === 'coral') score -= 2;
+  if (type === 'trash') score -= 0.5;
+
+  // Risk awareness: if coins are low, avoid coral extra
+  if (type === 'coral' && ai.coins <= 2) score -= 3;
+
+  // Depth: look at next-step best
+  if (depth >= 2 && type !== 'coral') {
+    // Simulate: what's the best adjacent hidden cell from there?
+    const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
+    let bestNext = -Infinity;
+    for (const [dr, dc] of dirs) {
+      const nr = row + dr, nc = col + dc;
+      if (!isOutside(nr, nc) && !state.board[nr][nc].revealed) {
+        const nx = CARD_TYPES[state.board[nr][nc].card].effect;
+        if (nx > bestNext) bestNext = nx;
+      }
+    }
+    if (bestNext > -Infinity) score += bestNext * 0.4;
+  }
+
+  return score;
+}
+
+function pickBestMove(moves, ai, depth, noise) {
+  let best = null, bestScore = -Infinity;
+  for (const m of moves) {
+    let s = scoreMove(m.row, m.col, ai, depth);
+    s += Math.random() * noise;
+    if (s > bestScore) { bestScore = s; best = m; }
+  }
+  return best;
+}
+
+// ============================================================
+// GAME OVER
+// ============================================================
+function checkGameOver() {
+  if (state.gameOver) return;
+  const alive = state.players.filter(p => !p.eliminated);
+
+  if (state.revealedCount >= BOARD_SIZE * BOARD_SIZE) {
+    state.gameOver = true;
+    render();
+    return;
+  }
+  if (alive.length <= 1) {
+    state.gameOver = true;
+    render();
+  }
+}
+
+// ============================================================
+// RENDER (dengan animasi kapal FLIP)
 // ============================================================
 function render() {
+  // 1. FLIP: catat posisi kapal lama
+  const oldRects = {};
+  document.querySelectorAll('.ship').forEach(el => {
+    oldRects[el.dataset.playerId] = el.getBoundingClientRect();
+  });
+
   const boardEl = document.getElementById('board');
   const statusEl = document.getElementById('statusBar');
   const actionsEl = document.getElementById('actionsBar');
-  const msgEl = document.getElementById('messageBar');
 
-  // --- STATUS BAR ---
+  // === STATUS BAR ===
   let statusHTML = '';
   for (const p of state.players) {
-    const active = p.id === state.currentPlayer && !state.gameOver ? ' active' : '';
+    const active = (p.id === state.currentPlayer && !state.gameOver) ? ' active' : '';
     const elim = p.eliminated ? ' eliminated' : '';
     statusHTML += '<div class="player-info' + active + elim + '">' +
       '<div class="player-dot" style="background:' + p.color + '"></div>' +
       '<div><div class="player-name">' + p.name + '</div>' +
-      '<div class="player-coins">💰 ' + p.coins + ' koin' +
-      (p.conservation > 0 ? ' · 🌿 ' + p.conservation : '') + '</div></div></div>';
+      '<div class="player-coins">💰 ' + p.coins + (p.conservation ? ' · 🌿 ' + p.conservation : '') + '</div></div></div>';
   }
 
   if (state.gameOver) {
     const alive = state.players.filter(p => !p.eliminated);
-    const winner = alive.length > 0 ? alive.reduce((a, b) => a.coins >= b.coins ? a : b) : null;
-    statusHTML += '<div class="turn-indicator" style="color:var(--kelp);">🏆 ' +
-      (winner ? winner.name + ' menang dengan ' + winner.coins + ' koin!' : 'Semua pemain bangkrut.') + '</div>';
+    let msg = '';
+    if (alive.length === 0) msg = 'Semua pemain bangkrut!';
+    else {
+      const winner = alive.reduce((a, b) => a.coins >= b.coins ? a : b);
+      msg = '🏆 ' + winner.name + ' menang dengan ' + winner.coins + ' koin!';
+    }
+    statusHTML += '<div class="turn-indicator" style="color:var(--kelp);">' + msg + '</div>';
+    setMessage(msg, 'win');
   } else {
-    statusHTML += '<div class="turn-indicator">Giliran: ' +
-      state.players[state.currentPlayer].name + '</div>';
+    const p = state.players[state.currentPlayer];
+    statusHTML += '<div class="turn-indicator">Giliran: ' + p.name +
+      '<span class="mp-badge">MP ' + state.mp + '</span></div>';
   }
   statusEl.innerHTML = statusHTML;
 
-  // --- BOARD ---
+  // === BOARD ===
   boardEl.innerHTML = '';
+  const p = state.players[state.currentPlayer];
+  const humanTurn = !state.gameOver && !p.eliminated && !p.isAI && !state.aiBusy;
+  const validMoves = humanTurn ? getValidMoves(p) : [];
+  const validSet = new Set(validMoves.map(m => m.row + ',' + m.col));
+
   for (let r = 0; r < BOARD_SIZE; r++) {
     for (let c = 0; c < BOARD_SIZE; c++) {
       const cell = state.board[r][c];
@@ -806,30 +819,9 @@ function render() {
       div.dataset.row = r;
       div.dataset.col = c;
 
-      if (cell.hole) {
-        div.classList.add('hole');
-      } else if (cell.revealed) {
-        div.classList.add('revealed');
-      } else {
-        // Check if current player can move here
-        const p = state.players[state.currentPlayer];
-        if (!p.eliminated && !state.gameOver) {
-          if (isOutside(p.row, p.col)) {
-            // Can move to edge
-            if (r === 0 || r === BOARD_SIZE-1 || c === 0 || c === BOARD_SIZE-1) {
-              if (canMoveTo(r, c)) div.classList.add('clickable');
-            }
-          } else {
-            const dr = Math.abs(r - p.row);
-            const dc = Math.abs(c - p.col);
-            if (dr + dc === 1 && canMoveTo(r, c)) {
-              div.classList.add('clickable');
-            }
-          }
-        }
-      }
+      if (cell.revealed) div.classList.add('revealed', 'hole');
+      if (validSet.has(r + ',' + c)) div.classList.add('clickable');
 
-      // Card faces
       const inner = document.createElement('div');
       inner.className = 'card-inner';
 
@@ -839,28 +831,22 @@ function render() {
 
       const back = document.createElement('div');
       back.className = 'card-face card-back ' + (cell.card || 'empty');
-      const cfg = CARD_TYPES[cell.card] || CARD_TYPES.empty;
-      back.textContent = cfg.label;
+      back.textContent = (CARD_TYPES[cell.card] || CARD_TYPES.empty).label;
       inner.appendChild(back);
 
       div.appendChild(inner);
 
       // Ship
-      for (const p of state.players) {
-        if (!p.eliminated && p.row === r && p.col === c) {
+      for (const pl of state.players) {
+        if (!pl.eliminated && pl.row === r && pl.col === c) {
           const ship = document.createElement('div');
-          ship.className = 'ship p' + p.id;
-          ship.textContent = p.id + 1;
+          ship.className = 'ship p' + pl.id;
+          ship.dataset.playerId = pl.id;
+          ship.textContent = pl.id + 1;
           div.appendChild(ship);
         }
       }
 
-      // Highlight selected
-      if (state.selectedCell && state.selectedCell.row === r && state.selectedCell.col === c) {
-        div.classList.add('highlight');
-      }
-
-      // Click handler
       div.addEventListener('click', (function(rr, cc) {
         return function() { onCellClick(rr, cc); };
       })(r, c));
@@ -869,117 +855,55 @@ function render() {
     }
   }
 
-  // Outside ships
-  for (const p of state.players) {
-    if (!p.eliminated && isOutside(p.row, p.col)) {
-      // Show outside ship in status
-      const el = document.getElementById('statusBar');
-      if (el) {
-        const badge = document.createElement('div');
-        badge.style.cssText = 'font-size:0.7rem;color:' + p.color + ';font-weight:700;';
-        badge.textContent = '⚓ ' + p.name + ' di ' + (START_SIDES[p.id] ? START_SIDES[p.id].label : 'luar');
-        // Append to status indicator
-      }
-    }
+  // === ACTIONS ===
+  if (state.gameOver) {
+    actionsEl.innerHTML = '<button onclick="resetGame()">🔄 Menu Utama</button>';
+  } else if (humanTurn) {
+    actionsEl.innerHTML =
+      '<button class="secondary" onclick="endTurn()" ' + (state.mp <= 0 ? 'disabled' : '') + '>⏭️ Akhiri Giliran</button>';
+  } else if (state.aiBusy) {
+    actionsEl.innerHTML = '<span style="color:white;font-size:0.85rem;padding:0.6rem;">🤖 AI sedang bergerak...</span>';
+  } else {
+    actionsEl.innerHTML = '';
   }
 
-  // --- ACTIONS ---
-  if (state.gameOver) {
-    actionsEl.innerHTML = '<button onclick="resetGame()">🔄 Main Lagi</button>';
-  } else {
-    const p = state.players[state.currentPlayer];
-    let actionsHTML = '';
-    // The game is click-based, so just show info
-    actionsHTML = '<span style="font-size:0.8rem;color:var(--muted);">' +
-      'Klik petak biru untuk bergerak · Klik petak yang sudah dibuka untuk membuka kartu baru di sebelahnya</span>';
-    actionsEl.innerHTML = actionsHTML;
-  }
+  // === FLIP ANIMATION ===
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.ship').forEach(el => {
+      const oldRect = oldRects[el.dataset.playerId];
+      if (!oldRect) return;
+      const newRect = el.getBoundingClientRect();
+      const dx = oldRect.left - newRect.left;
+      const dy = oldRect.top - newRect.top;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+
+      el.style.transition = 'none';
+      el.style.transform = 'translate(-50%, -50%) translate(' + dx + 'px, ' + dy + 'px)';
+      requestAnimationFrame(() => {
+        el.style.transition = 'transform 0.45s cubic-bezier(0.34, 1.2, 0.64, 1)';
+        el.style.transform = 'translate(-50%, -50%)';
+      });
+    });
+  });
 }
 
-function onCellClick(row, col) {
-  if (state.gameOver) return;
-  const p = state.players[state.currentPlayer];
-  if (p.eliminated) return;
-
-  const cell = state.board[row][col];
-
-  // If clicking a hidden edge cell while outside, move there
-  if (isOutside(p.row, p.col)) {
-    if (canMoveTo(row, col)) {
-      selectMoveTarget(row, col);
-      return;
-    }
-  }
-
-  // If clicking adjacent hidden cell, move there
-  if (!isOutside(p.row, p.col)) {
-    const dr = Math.abs(row - p.row);
-    const dc = Math.abs(col - p.col);
-    if (dr + dc === 1 && canMoveTo(row, col)) {
-      selectMoveTarget(row, col);
-      return;
-    }
-  }
-
-  // If clicking a revealed/hole cell, try to reveal a neighbor
-  if (cell.hole) {
-    // Find a hidden neighbor to reveal
-    const neighbors = getNeighbors(row, col);
-    const hiddenNeighbors = neighbors.filter(n => {
-      const nc = state.board[n.row][n.col];
-      return !nc.hole && !nc.revealed;
-    });
-
-    if (hiddenNeighbors.length === 0) {
-      setMessage('Tidak ada kartu tersembunyi di sekitar petak itu.', 'lose');
-      return;
-    }
-
-    // If only one, reveal it
-    if (hiddenNeighbors.length === 1) {
-      revealCard(hiddenNeighbors[0].row, hiddenNeighbors[0].col);
-      return;
-    }
-
-    // If multiple, let player choose by highlighting
-    state.selectedCell = { row, col };
-    setMessage('Pilih salah satu kartu tersembunyi di sekitar petak ini.', 'info');
-    render();
-    // Highlight hidden neighbors
-    for (const n of hiddenNeighbors) {
-      const cells = document.querySelectorAll('.cell');
-      cells.forEach(c => {
-        if (parseInt(c.dataset.row) === n.row && parseInt(c.dataset.col) === n.col) {
-          c.classList.add('highlight');
-        }
-      });
-    }
-    return;
-  }
-
-  // If clicking hidden cell that's not adjacent, show message
-  setMessage('Kamu hanya bisa bergerak ke petak yang bersebelahan.', 'lose');
+// ============================================================
+// SCREEN MANAGEMENT
+// ============================================================
+function startGame(mode, numPlayers, aiDifficulty) {
+  document.getElementById('setupScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+  initGame(mode, numPlayers, aiDifficulty || 'medium');
 }
 
 function resetGame() {
+  state = null;
   document.getElementById('setupScreen').classList.remove('hidden');
   document.getElementById('gameScreen').classList.add('hidden');
   document.getElementById('log').innerHTML = '';
-  state = {};
 }
 
-function startGame(numPlayers) {
-  document.getElementById('setupScreen').classList.add('hidden');
-  document.getElementById('gameScreen').classList.remove('hidden');
-  initGame(numPlayers);
-  render();
-}
-
-// ============================================================
-// INIT
-// ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-  // Show setup screen initially
   document.getElementById('setupScreen').classList.remove('hidden');
   document.getElementById('gameScreen').classList.add('hidden');
 });
